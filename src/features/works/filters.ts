@@ -1,5 +1,5 @@
 import { sortNewestFirst } from './selectors.ts'
-import { WATCH_STATUSES, WORK_TYPES, type WatchStatus, type Work, type WorkType } from './types.ts'
+import { WORK_TYPES, type Work, type WorkType } from './types.ts'
 
 export const SORT_KEYS = ['added', 'year-desc', 'year-asc', 'title'] as const
 export type SortKey = (typeof SORT_KEYS)[number]
@@ -16,13 +16,11 @@ type NonDefaultSort = Exclude<SortKey, typeof DEFAULT_SORT>
 const NON_DEFAULT_SORTS = SORT_KEYS.filter((k): k is NonDefaultSort => k !== DEFAULT_SORT)
 
 /**
- * 一覧の検索・絞り込み・並び替えの条件。URL の検索パラメータに保持する。
- * 既定値 (条件なし・追加の新しい順) の項目は undefined にして URL に出さない。
+ * 一覧の絞り込み (種別)・並び替えの条件。URL の検索パラメータに保持する。
+ * 既定値 (すべての種別・追加の新しい順) の項目は undefined にして URL に出さない。
  */
 export type WorkFilters = {
-  q?: string
   type?: WorkType
-  status?: WatchStatus
   sort?: NonDefaultSort
 }
 
@@ -30,25 +28,16 @@ function pick<T extends string>(value: unknown, values: readonly T[]): T | undef
   return typeof value === 'string' && values.includes(value as T) ? (value as T) : undefined
 }
 
-/** URL の検索パラメータを検証する。不正な値は無視して既定値として扱う */
+/** URL の検索パラメータを検証する。不正な値や廃止した項目 (q / status) は無視する */
 export function parseWorkFilters(search: Record<string, unknown>): WorkFilters {
-  // 入力中の空白 (単語の区切りなど) を消さないよう、q はそのまま保持する。空白だけなら条件なし
-  const q = typeof search.q === 'string' && search.q.trim() !== '' ? search.q : undefined
   return {
-    q,
     type: pick(search.type, WORK_TYPES),
-    status: pick(search.status, WATCH_STATUSES),
     sort: pick(search.sort, NON_DEFAULT_SORTS),
   }
 }
 
 export function hasActiveFilters(filters: WorkFilters): boolean {
-  return Boolean(filters.q || filters.type || filters.status)
-}
-
-/** 検索用に表記ゆれをそろえる (全角・半角、大文字・小文字、前後・連続の空白) */
-export function normalizeForSearch(text: string): string {
-  return text.normalize('NFKC').toLowerCase().replace(/\s+/g, ' ').trim()
+  return Boolean(filters.type)
 }
 
 const titleCollator = new Intl.Collator('ja', { numeric: true, sensitivity: 'base' })
@@ -76,12 +65,6 @@ function sortWorks(works: readonly Work[], sort: SortKey): Work[] {
 }
 
 export function applyWorkFilters(works: readonly Work[], filters: WorkFilters): Work[] {
-  const keywords = filters.q ? normalizeForSearch(filters.q).split(' ') : []
-  const matched = works.filter(
-    (work) =>
-      (!filters.type || work.type === filters.type) &&
-      (!filters.status || work.status === filters.status) &&
-      keywords.every((k) => normalizeForSearch(work.title).includes(k)),
-  )
+  const matched = works.filter((work) => !filters.type || work.type === filters.type)
   return sortWorks(matched, filters.sort ?? DEFAULT_SORT)
 }
