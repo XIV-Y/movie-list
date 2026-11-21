@@ -1,6 +1,7 @@
 /// <reference types="vite/client" />
 import type { ReactNode } from 'react'
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
+import appCss from '../styles.css?url'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -9,6 +10,7 @@ export const Route = createRootRoute({
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { title: 'Movie List' },
     ],
+    links: [{ rel: 'stylesheet', href: appCss }],
   }),
   // SPA モードでは shellComponent だけがビルド時に HTML 化され、
   // ルートの中身はブラウザ側で描画される
