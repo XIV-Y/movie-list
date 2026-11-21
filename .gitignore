@@ -6,6 +6,6 @@ dist
 *.local
 .DS_Store
 
-# 秘密情報 (CATALOG トークンは ~/.config/movie-list/env に置く。リポジトリには絶対に入れない)
+# 秘密情報・環境依存の設定は ~/.config/movie-list/.env に置く。リポジトリには絶対に入れない
 .env
 .env.*
