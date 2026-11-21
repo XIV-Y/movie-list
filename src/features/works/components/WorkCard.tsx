@@ -1,5 +1,5 @@
-import { formatDate } from '../format'
-import { WATCH_STATUS_LABELS, type Work } from '../types'
+import { formatDate } from '../format.ts'
+import { WATCH_STATUS_LABELS, type Work } from '../types.ts'
 import { RatingStars } from './RatingStars'
 import { WorkTypeBadge } from './WorkTypeBadge'
 

@@ -1,4 +1,4 @@
-import { RATING_MAX } from '../types'
+import { RATING_MAX } from '../types.ts'
 
 export function RatingStars({ rating }: { rating: number }) {
   return (

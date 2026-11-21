@@ -26,6 +26,8 @@ jobs:
       - id: pages
         uses: actions/configure-pages@v5
       - run: npm ci
+      - run: npm run typecheck
+      # prebuild で視聴記録 JSON の形式チェック (npm run validate) も実行される
       - run: npm run build
         env:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}/
