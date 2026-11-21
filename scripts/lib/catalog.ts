@@ -33,7 +33,7 @@ export class CatalogError extends Error {
   override name = 'CatalogError'
 }
 
-const ENV_FILE = '~/.config/movie-list/.env'
+const ENV_FILE = '~/.config/watch-log/.env'
 
 function requireEnv(name: 'CATALOG_API_BASE_URL' | 'CATALOG_API_TOKEN', example: string): string {
   const value = process.env[name]

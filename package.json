@@ -9,7 +9,7 @@
     "typecheck": "tsc --noEmit",
     "validate": "node scripts/validate-works.ts",
     "prebuild": "npm run validate",
-    "add": "node --env-file-if-exists=$HOME/.config/movie-list/.env scripts/add-work.ts"
+    "add": "node --env-file-if-exists=$HOME/.config/watch-log/.env scripts/add-work.ts"
   },
   "dependencies": {
     "@tanstack/react-router": "^1.170.46",
