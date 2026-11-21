@@ -13,6 +13,8 @@ export const Route = createRootRoute({
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { title: 'Movie List' },
       { name: 'theme-color', content: '#18181b' },
+      // 個人の記録なので検索エンジンの検索結果に出さない (全ページ共通)
+      { name: 'robots', content: 'noindex, nofollow' },
     ],
     links: [
       { rel: 'stylesheet', href: appCss },
