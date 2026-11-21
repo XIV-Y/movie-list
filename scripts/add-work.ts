@@ -136,6 +136,12 @@ async function main() {
 }
 
 main().catch((error: unknown) => {
+  // 未知のオプション (廃止した --rating など) や値の不足はスタックトレースを出さずに伝える
+  const code = (error as { code?: string })?.code
+  if (code === 'ERR_PARSE_ARGS_UNKNOWN_OPTION' || code === 'ERR_PARSE_ARGS_INVALID_OPTION_VALUE') {
+    console.error(`✖ ${(error as Error).message.split('.')[0]}。使えるオプションは README を参照してください`)
+    process.exit(1)
+  }
   if (error instanceof UsageError || error instanceof CatalogError || (error as Error)?.name === 'WorksParseError') {
     console.error(`✖ ${(error as Error).message}`)
     process.exit(1)
