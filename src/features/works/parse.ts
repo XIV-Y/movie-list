@@ -41,27 +41,21 @@ const DATE_RE = /^\d{4}-\d{2}-\d{2}$/
 
 function parseWork(value: unknown, at: string): Work {
   const o = asObject(value, at)
-  const work: Work = {
+  // キーの順序をそろえて返す (スクリプトで JSON に書き戻すときの並び順になる)
+  return {
     id: str(o, 'id', at),
     title: str(o, 'title', at),
     type: oneOf(o, 'type', WORK_TYPES, at),
     status: oneOf(o, 'status', WATCH_STATUSES, at),
+    ...(o.releaseYear !== undefined && { releaseYear: int(o, 'releaseYear', at, 1870, 2100) }),
+    ...(o.watchedOn !== undefined && { watchedOn: date(o, 'watchedOn', at) }),
+    ...(o.rating !== undefined && { rating: int(o, 'rating', at, RATING_MIN, RATING_MAX) }),
+    ...(o.note !== undefined && { note: str(o, 'note', at) }),
     tags: strArray(o, 'tags', at),
+    ...(o.catalog !== undefined && { catalog: parseCatalog(o.catalog, `${at}.catalog`) }),
     createdAt: dateTime(o, 'createdAt', at),
     updatedAt: dateTime(o, 'updatedAt', at),
   }
-
-  if (o.releaseYear !== undefined) work.releaseYear = int(o, 'releaseYear', at, 1870, 2100)
-  if (o.watchedOn !== undefined) {
-    const v = str(o, 'watchedOn', at)
-    if (!DATE_RE.test(v) || Number.isNaN(Date.parse(v))) fail(at, 'watchedOn', 'YYYY-MM-DD 形式の日付')
-    work.watchedOn = v
-  }
-  if (o.rating !== undefined) work.rating = int(o, 'rating', at, RATING_MIN, RATING_MAX)
-  if (o.note !== undefined) work.note = str(o, 'note', at)
-  if (o.catalog !== undefined) work.catalog = parseCatalog(o.catalog, `${at}.catalog`)
-
-  return work
 }
 
 function parseCatalog(value: unknown, at: string): CatalogInfo {
@@ -115,6 +109,17 @@ function strArray(o: Record<string, unknown>, key: string, at: string): string[]
     fail(at, key, '空でない文字列の配列')
   }
   return v as string[]
+}
+
+/** YYYY-MM-DD 形式の日付か */
+export function isDateString(value: string): boolean {
+  return DATE_RE.test(value) && !Number.isNaN(Date.parse(value))
+}
+
+function date(o: Record<string, unknown>, key: string, at: string): string {
+  const v = str(o, key, at)
+  if (!isDateString(v)) fail(at, key, 'YYYY-MM-DD 形式の日付')
+  return v
 }
 
 function dateTime(o: Record<string, unknown>, key: string, at: string): string {
