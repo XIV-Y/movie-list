@@ -10,7 +10,6 @@ export function readWorks(): Work[] {
 }
 
 export function writeWorks(works: Work[]): void {
-  // 書き込む前にも検証し、壊れた JSON を保存しないようにする
-  parseWorks(works)
-  writeFileSync(WORKS_FILE, `${JSON.stringify(works, null, 2)}\n`)
+  // 書き込む前にも検証し、壊れた JSON を保存しないようにする (キーの並び順もそろう)
+  writeFileSync(WORKS_FILE, `${JSON.stringify(parseWorks(works), null, 2)}\n`)
 }
