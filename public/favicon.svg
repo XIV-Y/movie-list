@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#18181b"/>
+  <!-- カチンコの本体 -->
+  <rect x="11" y="29" width="42" height="24" rx="3" fill="#fafafa"/>
+  <rect x="11" y="29" width="42" height="5" fill="#f43f5e"/>
+  <!-- 開いた拍子木 -->
+  <g transform="rotate(-16 11 26)">
+    <rect x="11" y="18" width="42" height="8" rx="2" fill="#fafafa"/>
+    <path d="M17 18h6l-5 8h-6zM29 18h6l-5 8h-6zM41 18h6l-5 8h-6z" fill="#f43f5e"/>
+  </g>
+</svg>
