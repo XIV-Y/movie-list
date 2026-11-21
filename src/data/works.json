@@ -1,1 +1,86 @@
-[]
+[
+  {
+    "id": "movie-36657",
+    "title": "X-MEN",
+    "type": "movie",
+    "status": "watched",
+    "releaseYear": 2000,
+    "catalog": {
+      "id": 36657,
+      "mediaType": "movie",
+      "posterPath": "/axu6yoVMnoXIPL2XTIxXRVq2JGL.jpg"
+    }
+  },
+  {
+    "id": "movie-36658",
+    "title": "X-MEN2",
+    "type": "movie",
+    "status": "watched",
+    "releaseYear": 2003,
+    "catalog": {
+      "id": 36658,
+      "mediaType": "movie",
+      "posterPath": "/aULWfwzhEQCqppZYjJWPsPMffrN.jpg"
+    }
+  },
+  {
+    "id": "movie-36668",
+    "title": "X-MEN：ファイナル ディシジョン",
+    "type": "movie",
+    "status": "watched",
+    "releaseYear": 2006,
+    "catalog": {
+      "id": 36668,
+      "mediaType": "movie",
+      "posterPath": "/8ytUYxV7Puzf9lDdrqFlinVeOZg.jpg"
+    }
+  },
+  {
+    "id": "movie-49538",
+    "title": "X-MEN：ファースト・ジェネレーション",
+    "type": "movie",
+    "status": "watched",
+    "releaseYear": 2011,
+    "catalog": {
+      "id": 49538,
+      "mediaType": "movie",
+      "posterPath": "/9ClbjVada4E8vUtoq7YfBdLwPSj.jpg"
+    }
+  },
+  {
+    "id": "movie-127585",
+    "title": "X-MEN：フューチャー＆パスト",
+    "type": "movie",
+    "status": "watched",
+    "releaseYear": 2014,
+    "catalog": {
+      "id": 127585,
+      "mediaType": "movie",
+      "posterPath": "/v3nzutbUIGZROj82ZrPpVvx8xwU.jpg"
+    }
+  },
+  {
+    "id": "movie-246655",
+    "title": "X-MEN：アポカリプス",
+    "type": "movie",
+    "status": "watched",
+    "releaseYear": 2016,
+    "catalog": {
+      "id": 246655,
+      "mediaType": "movie",
+      "posterPath": "/wK8pmNSzfdnYTBROt4veWJ0FC2w.jpg"
+    }
+  },
+  {
+    "id": "movie-320288",
+    "title": "X-MEN：ダーク・フェニックス",
+    "type": "movie",
+    "status": "watched",
+    "releaseYear": 2019,
+    "catalog": {
+      "id": 320288,
+      "mediaType": "movie",
+      "posterPath": "/h1H2eBYr2mmqjr0NPofK3ZPSRCt.jpg"
+    }
+  }
+]
