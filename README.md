@@ -1,4 +1,4 @@
-# movie-list
+# watch-log
 
 見た映画・ドラマ・アニメなどの映像作品を個人的に記録していく Web アプリ。
 
@@ -11,13 +11,13 @@
 
 外部サービスの URL・トークンなどはリポジトリに一切置かない。
 
-### ローカル: `~/.config/movie-list/.env`
+### ローカル: `~/.config/watch-log/.env`
 
 ```bash
-mkdir -p ~/.config/movie-list
-chmod 700 ~/.config/movie-list
-# エディタで ~/.config/movie-list/.env を作成して下表の値を書く
-chmod 600 ~/.config/movie-list/.env
+mkdir -p ~/.config/watch-log
+chmod 700 ~/.config/watch-log
+# エディタで ~/.config/watch-log/.env を作成して下表の値を書く
+chmod 600 ~/.config/watch-log/.env
 ```
 
 | 変数 | 用途 | 使う場所 |
@@ -41,7 +41,7 @@ chmod 600 ~/.config/movie-list/.env
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000/movie-list/
+npm run dev        # http://localhost:3000/watch-log/
 npm run build      # dist/client に静的な HTML などを出力 (事前に validate も実行)
 npm run typecheck
 npm run validate   # 視聴記録 JSON の形式チェック
@@ -83,6 +83,6 @@ npm run add -- --id 129 --media movie
 `main` に push すると GitHub Actions (`.github/workflows/deploy.yml`) がビルドして GitHub Pages に公開する。
 初回のみ、リポジトリの **Settings → Pages → Build and deployment → Source** を **GitHub Actions** に設定すること。
 
-- ベースパスは既定で `/movie-list/`（環境変数 `BASE_PATH` で変更可）
+- ベースパスは既定で `/watch-log/`（環境変数 `BASE_PATH` で変更可）
 - 存在しないパスでは、ビルド時に生成した `404.html`（ページが見つかりません）が表示される
 - 全ページに `noindex, nofollow` を付けているので、検索エンジンの検索結果には表示されない

@@ -4,7 +4,7 @@ type PosterWidth = (typeof POSTER_WIDTHS)[number]
 
 /**
  * ポスター画像 CDN のベース URL。ビルド時の環境変数 VITE_POSTER_BASE_URL から読む
- * (ローカル: ~/.config/movie-list/.env、CI: GitHub Actions の Variables)。
+ * (ローカル: ~/.config/watch-log/.env、CI: GitHub Actions の Variables)。
  * 未設定ならポスターの代わりにプレースホルダーを表示する。
  */
 const IMAGE_BASE = import.meta.env.VITE_POSTER_BASE_URL?.replace(/\/+$/, '')

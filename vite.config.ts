@@ -5,12 +5,12 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-// GitHub Pages (https://<user>.github.io/movie-list/) で配信するためのベースパス
-const base = process.env.BASE_PATH ?? '/movie-list/'
+// GitHub Pages (https://<user>.github.io/watch-log/) で配信するためのベースパス
+const base = process.env.BASE_PATH ?? '/watch-log/'
 
 // 外部サービスの URL などはリポジトリに置かず、リポジトリ外の .env (ローカル) か
 // GitHub Actions の Variables (CI) から読む
-const envDir = join(homedir(), '.config', 'movie-list')
+const envDir = join(homedir(), '.config', 'watch-log')
 const REQUIRED_IN_CI = ['VITE_POSTER_BASE_URL', 'VITE_CREDIT_NAME', 'VITE_CREDIT_URL']
 
 export default defineConfig(({ mode }) => {
@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
     const message = `環境変数が未設定です: ${missing.join(', ')}`
     // 本番デプロイでは画像やクレジット表記が欠けないよう、ビルドを止める
     if (process.env.CI) throw new Error(`${message} (GitHub Actions の Variables に設定してください)`)
-    console.warn(`[movie-list] ${message} (${envDir}/.env に設定するとポスターやクレジットが表示されます)`)
+    console.warn(`[watch-log] ${message} (${envDir}/.env に設定するとポスターやクレジットが表示されます)`)
   }
 
   return {
