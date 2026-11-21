@@ -1,6 +1,4 @@
 import {
-  RATING_MAX,
-  RATING_MIN,
   CATALOG_MEDIA_TYPES,
   WATCH_STATUSES,
   WORK_TYPES,
@@ -39,8 +37,12 @@ export class WorksParseError extends Error {
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/
 
+const WORK_KEYS = ['id', 'title', 'type', 'status', 'releaseYear', 'watchedOn', 'catalog']
+const CATALOG_KEYS = ['id', 'mediaType', 'posterPath']
+
 function parseWork(value: unknown, at: string): Work {
   const o = asObject(value, at)
+  rejectUnknownKeys(o, WORK_KEYS, at)
   // キーの順序をそろえて返す (スクリプトで JSON に書き戻すときの並び順になる)
   return {
     id: str(o, 'id', at),
@@ -49,17 +51,13 @@ function parseWork(value: unknown, at: string): Work {
     status: oneOf(o, 'status', WATCH_STATUSES, at),
     ...(o.releaseYear !== undefined && { releaseYear: int(o, 'releaseYear', at, 1870, 2100) }),
     ...(o.watchedOn !== undefined && { watchedOn: date(o, 'watchedOn', at) }),
-    ...(o.rating !== undefined && { rating: int(o, 'rating', at, RATING_MIN, RATING_MAX) }),
-    ...(o.note !== undefined && { note: str(o, 'note', at) }),
-    tags: strArray(o, 'tags', at),
     ...(o.catalog !== undefined && { catalog: parseCatalog(o.catalog, `${at}.catalog`) }),
-    createdAt: dateTime(o, 'createdAt', at),
-    updatedAt: dateTime(o, 'updatedAt', at),
   }
 }
 
 function parseCatalog(value: unknown, at: string): CatalogRef {
   const o = asObject(value, at)
+  rejectUnknownKeys(o, CATALOG_KEYS, at)
   const catalog: CatalogRef = {
     id: int(o, 'id', at, 1, Number.MAX_SAFE_INTEGER),
     mediaType: oneOf(o, 'mediaType', CATALOG_MEDIA_TYPES, at),
@@ -77,6 +75,14 @@ function asObject(value: unknown, at: string): Record<string, unknown> {
     throw new WorksParseError(`${at} はオブジェクトである必要があります`)
   }
   return value as Record<string, unknown>
+}
+
+/** 手で編集したときのキー名の誤りや、廃止した項目の残りを検出する */
+function rejectUnknownKeys(o: Record<string, unknown>, allowed: readonly string[], at: string): void {
+  const unknown = Object.keys(o).filter((key) => !allowed.includes(key))
+  if (unknown.length > 0) {
+    throw new WorksParseError(`${at} に未知の項目があります: ${unknown.join(', ')} (使える項目: ${allowed.join(', ')})`)
+  }
 }
 
 function fail(at: string, key: string, expected: string): never {
@@ -103,14 +109,6 @@ function oneOf<T extends string>(o: Record<string, unknown>, key: string, values
   return v as T
 }
 
-function strArray(o: Record<string, unknown>, key: string, at: string): string[] {
-  const v = o[key]
-  if (!Array.isArray(v) || !v.every((x) => typeof x === 'string' && x.trim() !== '')) {
-    fail(at, key, '空でない文字列の配列')
-  }
-  return v as string[]
-}
-
 /** YYYY-MM-DD 形式の日付か */
 export function isDateString(value: string): boolean {
   return DATE_RE.test(value) && !Number.isNaN(Date.parse(value))
@@ -119,11 +117,5 @@ export function isDateString(value: string): boolean {
 function date(o: Record<string, unknown>, key: string, at: string): string {
   const v = str(o, key, at)
   if (!isDateString(v)) fail(at, key, 'YYYY-MM-DD 形式の日付')
-  return v
-}
-
-function dateTime(o: Record<string, unknown>, key: string, at: string): string {
-  const v = str(o, key, at)
-  if (Number.isNaN(Date.parse(v))) fail(at, key, 'ISO 8601 形式の日時')
   return v
 }

@@ -6,19 +6,11 @@
     "status": "watching",
     "releaseYear": 2023,
     "watchedOn": "2026-11-19",
-    "rating": 5,
-    "note": "毎話の余韻がすごい。音楽も良い。",
-    "tags": [
-      "ファンタジー",
-      "配信"
-    ],
     "catalog": {
       "id": 209867,
       "mediaType": "tv",
       "posterPath": "/dhzbCznEzU67RXWYb53fyPe9Keb.jpg"
-    },
-    "createdAt": "2026-11-21T15:04:14.837Z",
-    "updatedAt": "2026-11-21T15:04:14.837Z"
+    }
   },
   {
     "id": "tv-68293",
@@ -27,18 +19,11 @@
     "status": "watched",
     "releaseYear": 2016,
     "watchedOn": "2026-11-16",
-    "rating": 4,
-    "note": "何度目かの見返し。テンポが良くて一気に見られる。",
-    "tags": [
-      "ラブコメ"
-    ],
     "catalog": {
       "id": 68293,
       "mediaType": "tv",
       "posterPath": "/hZwCvI7x2f2ZG0ZybInfQeGyyIA.jpg"
-    },
-    "createdAt": "2026-11-21T15:04:15.148Z",
-    "updatedAt": "2026-11-21T15:04:15.148Z"
+    }
   },
   {
     "id": "movie-157336",
@@ -47,19 +32,11 @@
     "status": "watched",
     "releaseYear": 2014,
     "watchedOn": "2026-11-09",
-    "rating": 5,
-    "note": "終盤の展開で鳥肌。IMAX で見直したい。",
-    "tags": [
-      "SF",
-      "宇宙"
-    ],
     "catalog": {
       "id": 157336,
       "mediaType": "movie",
       "posterPath": "/auQjFBfCWSL6DpQhWVCZ6wFtDm6.jpg"
-    },
-    "createdAt": "2026-11-21T15:04:15.360Z",
-    "updatedAt": "2026-11-21T15:04:15.360Z"
+    }
   },
   {
     "id": "tv-1396",
@@ -68,19 +45,11 @@
     "status": "watching",
     "releaseYear": 2008,
     "watchedOn": "2026-11-05",
-    "rating": 5,
-    "note": "シーズン3まで視聴。",
-    "tags": [
-      "クライム",
-      "海外ドラマ"
-    ],
     "catalog": {
       "id": 1396,
       "mediaType": "tv",
       "posterPath": "/anFx9aTOOYqgS3v7x3R84Kz67ly.jpg"
-    },
-    "createdAt": "2026-11-21T15:04:15.613Z",
-    "updatedAt": "2026-11-21T15:04:15.613Z"
+    }
   },
   {
     "id": "movie-129",
@@ -89,18 +58,11 @@
     "status": "watched",
     "releaseYear": 2001,
     "watchedOn": "2026-10-30",
-    "rating": 5,
-    "note": "何度見ても新しい発見がある。",
-    "tags": [
-      "ジブリ"
-    ],
     "catalog": {
       "id": 129,
       "mediaType": "movie",
       "posterPath": "/8TEs6twIANAc2qiU8m17JO8Ujcx.jpg"
-    },
-    "createdAt": "2026-11-21T15:04:15.882Z",
-    "updatedAt": "2026-11-21T15:04:15.882Z"
+    }
   },
   {
     "id": "movie-315011",
@@ -109,18 +71,11 @@
     "status": "watched",
     "releaseYear": 2016,
     "watchedOn": "2026-10-21",
-    "rating": 4,
-    "note": "会議シーンの早口がクセになる。",
-    "tags": [
-      "特撮"
-    ],
     "catalog": {
       "id": 315011,
       "mediaType": "movie",
       "posterPath": "/8ulwqKiHxz5uH0g0I1BVeNDTWlo.jpg"
-    },
-    "createdAt": "2026-11-21T15:04:16.132Z",
-    "updatedAt": "2026-11-21T15:04:16.132Z"
+    }
   },
   {
     "id": "tv-120089",
@@ -129,19 +84,11 @@
     "status": "watched",
     "releaseYear": 2022,
     "watchedOn": "2026-10-12",
-    "rating": 4,
-    "note": "アーニャがかわいい。",
-    "tags": [
-      "コメディ",
-      "配信"
-    ],
     "catalog": {
       "id": 120089,
       "mediaType": "tv",
       "posterPath": "/vaIREdPGZOnW9Jrs86mheVVlIQQ.jpg"
-    },
-    "createdAt": "2026-11-21T15:04:16.370Z",
-    "updatedAt": "2026-11-21T15:04:16.370Z"
+    }
   },
   {
     "id": "tv-1044",
@@ -150,19 +97,11 @@
     "status": "watched",
     "releaseYear": 2006,
     "watchedOn": "2026-09-28",
-    "rating": 4,
-    "note": "映像が圧倒的。",
-    "tags": [
-      "ドキュメンタリー",
-      "自然"
-    ],
     "catalog": {
       "id": 1044,
       "mediaType": "tv",
       "posterPath": "/bNcNxUtZ520d5de5s78onoiSiwQ.jpg"
-    },
-    "createdAt": "2026-11-21T15:04:16.617Z",
-    "updatedAt": "2026-11-21T15:04:16.617Z"
+    }
   },
   {
     "id": "tv-55925",
@@ -171,17 +110,11 @@
     "status": "watched",
     "releaseYear": 2013,
     "watchedOn": "2026-09-14",
-    "rating": 3,
-    "tags": [
-      "企業もの"
-    ],
     "catalog": {
       "id": 55925,
       "mediaType": "tv",
       "posterPath": "/4Qnk3QvC8gxTWH5uM8thovg1j4Q.jpg"
-    },
-    "createdAt": "2026-11-21T15:04:16.882Z",
-    "updatedAt": "2026-11-21T15:04:16.882Z"
+    }
   },
   {
     "id": "movie-361743",
@@ -189,17 +122,11 @@
     "type": "movie",
     "status": "want",
     "releaseYear": 2022,
-    "note": "友人のおすすめ。劇場で見たかった。",
-    "tags": [
-      "アクション"
-    ],
     "catalog": {
       "id": 361743,
       "mediaType": "movie",
       "posterPath": "/qw19Vqa16HlmKyxCADncAlb0SWg.jpg"
-    },
-    "createdAt": "2026-11-21T15:04:17.161Z",
-    "updatedAt": "2026-11-21T15:04:17.161Z"
+    }
   },
   {
     "id": "tv-76757",
@@ -207,16 +134,10 @@
     "type": "anime",
     "status": "want",
     "releaseYear": 2018,
-    "tags": [
-      "歴史",
-      "冒険"
-    ],
     "catalog": {
       "id": 76757,
       "mediaType": "tv",
       "posterPath": "/rVRpYvsyPgUUsuK0kQbya67ROPZ.jpg"
-    },
-    "createdAt": "2026-11-21T15:04:17.443Z",
-    "updatedAt": "2026-11-21T15:04:17.443Z"
+    }
   }
 ]

@@ -19,10 +19,6 @@ export const WATCH_STATUS_LABELS: Record<WatchStatus, string> = {
   want: '見たい',
 }
 
-/** 評価の範囲 (1〜5) */
-export const RATING_MIN = 1
-export const RATING_MAX = 5
-
 /** 外部の作品データベース上の作品の区分 */
 export const CATALOG_MEDIA_TYPES = ['movie', 'tv'] as const
 export type CatalogMediaType = (typeof CATALOG_MEDIA_TYPES)[number]
@@ -45,15 +41,6 @@ export type Work = {
   releaseYear?: number
   /** 視聴日 (YYYY-MM-DD) */
   watchedOn?: string
-  /** 評価 (RATING_MIN〜RATING_MAX) */
-  rating?: number
-  /** 感想メモ */
-  note?: string
-  tags: string[]
   /** 作品データベースから登録した作品のみ */
   catalog?: CatalogRef
-  /** 作成日時 (ISO 8601) */
-  createdAt: string
-  /** 更新日時 (ISO 8601) */
-  updatedAt: string
 }

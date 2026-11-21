@@ -7,10 +7,7 @@
  *
  * オプション:
  *   --status <watched|watching|want>  視聴ステータス (既定: watched)
- *   --rating <1-5>                    評価
  *   --watched-on <YYYY-MM-DD>         視聴日 (既定: watched / watching なら今日)
- *   --note <text>                     感想メモ
- *   --tag <name>                      タグ (複数指定可)
  *   --type <movie|drama|anime|other>  種別 (既定: 作品データベースのジャンルから推定)
  *   --id <id> --media <movie|tv>      作品データベースの作品 ID を直接指定 (検索しない)
  *   --first                           検索結果の 1 件目を選ぶ (候補を選ばない)
@@ -19,8 +16,6 @@ import { createInterface } from 'node:readline/promises'
 import { parseArgs } from 'node:util'
 import { isDateString } from '../src/features/works/parse.ts'
 import {
-  RATING_MAX,
-  RATING_MIN,
   CATALOG_MEDIA_TYPES,
   WATCH_STATUSES,
   WATCH_STATUS_LABELS,
@@ -79,10 +74,7 @@ async function main() {
     allowPositionals: true,
     options: {
       status: { type: 'string', default: 'watched' },
-      rating: { type: 'string' },
       'watched-on': { type: 'string' },
-      note: { type: 'string' },
-      tag: { type: 'string', multiple: true, default: [] },
       type: { type: 'string' },
       id: { type: 'string' },
       media: { type: 'string' },
@@ -94,10 +86,6 @@ async function main() {
   const typeOverride = choice('type', values.type, WORK_TYPES)
   const query = positionals.join(' ').trim()
 
-  const rating = values.rating === undefined ? undefined : Number(values.rating)
-  if (rating !== undefined && (!Number.isInteger(rating) || rating < RATING_MIN || rating > RATING_MAX)) {
-    throw new UsageError(`--rating は ${RATING_MIN}〜${RATING_MAX} の整数で指定してください`)
-  }
   const watchedOn = values['watched-on']
   if (watchedOn !== undefined && !isDateString(watchedOn)) {
     throw new UsageError('--watched-on は YYYY-MM-DD 形式で指定してください')
@@ -124,7 +112,6 @@ async function main() {
   if (duplicate) throw new UsageError(`「${duplicate.title}」はすでに登録されています (id: ${duplicate.id})`)
 
   const details = await getWorkDetails(target.mediaType, target.id)
-  const now = new Date().toISOString()
   const work: Work = {
     id,
     title: details.title || details.originalTitle,
@@ -132,12 +119,7 @@ async function main() {
     status,
     releaseYear: details.releaseYear,
     watchedOn: watchedOn ?? (status === 'want' ? undefined : today()),
-    rating,
-    note: values.note,
-    tags: values.tag,
     catalog: { id: details.id, mediaType: details.mediaType, posterPath: details.posterPath },
-    createdAt: now,
-    updatedAt: now,
   }
 
   // undefined の項目は JSON に書かない
@@ -148,13 +130,18 @@ async function main() {
     WORK_TYPE_LABELS[cleaned.type],
     cleaned.releaseYear && `${cleaned.releaseYear}年`,
     WATCH_STATUS_LABELS[cleaned.status],
-    cleaned.rating && `★${cleaned.rating}`,
     cleaned.watchedOn,
   ].filter(Boolean)
   console.log(`✔ 追加しました: ${cleaned.title} (${parts.join(' / ')})`)
 }
 
 main().catch((error: unknown) => {
+  // 未知のオプション (廃止した --rating など) や値の不足はスタックトレースを出さずに伝える
+  const code = (error as { code?: string })?.code
+  if (code === 'ERR_PARSE_ARGS_UNKNOWN_OPTION' || code === 'ERR_PARSE_ARGS_INVALID_OPTION_VALUE') {
+    console.error(`✖ ${(error as Error).message.split('.')[0]}。使えるオプションは README を参照してください`)
+    process.exit(1)
+  }
   if (error instanceof UsageError || error instanceof CatalogError || (error as Error)?.name === 'WorksParseError') {
     console.error(`✖ ${(error as Error).message}`)
     process.exit(1)
