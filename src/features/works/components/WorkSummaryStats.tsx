@@ -1,11 +1,10 @@
 import type { WorkSummary } from '../selectors.ts'
 import { WORK_TYPES, WORK_TYPE_LABELS } from '../types.ts'
 
-/** summary を省略するとスケルトン (件数部分だけ読み込み中の表示) になる */
-export function WorkSummaryStats({ summary }: { summary?: WorkSummary }) {
+export function WorkSummaryStats({ summary }: { summary: WorkSummary }) {
   const items = [
-    { label: 'すべて', count: summary?.total },
-    ...WORK_TYPES.map((type) => ({ label: WORK_TYPE_LABELS[type], count: summary?.byType[type] })),
+    { label: 'すべて', count: summary.total },
+    ...WORK_TYPES.map((type) => ({ label: WORK_TYPE_LABELS[type], count: summary.byType[type] })),
   ]
 
   return (
@@ -17,14 +16,7 @@ export function WorkSummaryStats({ summary }: { summary?: WorkSummary }) {
         >
           <dt className="text-xs text-zinc-500 dark:text-zinc-400">{label}</dt>
           <dd className="mt-0.5 text-2xl font-bold tabular-nums">
-            {count === undefined ? (
-              // 実際の数字と同じ行の高さを保つため、透明な文字を入れておく
-              <span className="inline-block animate-pulse rounded bg-zinc-200 text-transparent motion-reduce:animate-none dark:bg-zinc-800">
-                00
-              </span>
-            ) : (
-              count
-            )}
+            {count}
             <span className="ml-0.5 text-xs font-normal text-zinc-500 dark:text-zinc-400">件</span>
           </dd>
         </div>

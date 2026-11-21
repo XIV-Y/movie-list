@@ -9,7 +9,7 @@ type Props = {
   list: ReactNode
 }
 
-/** TOP ページの骨組み。実際の画面とスケルトンで共通にして、切り替え時に寸法が変わらないようにする */
+/** TOP ページの骨組み */
 export function WorksPage({ summary, toolbar, resultInfo, list }: Props) {
   return (
     <div className="space-y-8">
