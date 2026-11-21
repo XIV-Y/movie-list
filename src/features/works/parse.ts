@@ -35,9 +35,7 @@ export class WorksParseError extends Error {
   override name = 'WorksParseError'
 }
 
-const DATE_RE = /^\d{4}-\d{2}-\d{2}$/
-
-const WORK_KEYS = ['id', 'title', 'type', 'status', 'releaseYear', 'watchedOn', 'catalog']
+const WORK_KEYS = ['id', 'title', 'type', 'status', 'releaseYear', 'catalog']
 const CATALOG_KEYS = ['id', 'mediaType', 'posterPath']
 
 function parseWork(value: unknown, at: string): Work {
@@ -50,7 +48,6 @@ function parseWork(value: unknown, at: string): Work {
     type: oneOf(o, 'type', WORK_TYPES, at),
     status: oneOf(o, 'status', WATCH_STATUSES, at),
     ...(o.releaseYear !== undefined && { releaseYear: int(o, 'releaseYear', at, 1870, 2100) }),
-    ...(o.watchedOn !== undefined && { watchedOn: date(o, 'watchedOn', at) }),
     ...(o.catalog !== undefined && { catalog: parseCatalog(o.catalog, `${at}.catalog`) }),
   }
 }
@@ -107,15 +104,4 @@ function oneOf<T extends string>(o: Record<string, unknown>, key: string, values
   const v = o[key]
   if (typeof v !== 'string' || !values.includes(v as T)) fail(at, key, `${values.join(' / ')} のいずれか`)
   return v as T
-}
-
-/** YYYY-MM-DD 形式の日付か */
-export function isDateString(value: string): boolean {
-  return DATE_RE.test(value) && !Number.isNaN(Date.parse(value))
-}
-
-function date(o: Record<string, unknown>, key: string, at: string): string {
-  const v = str(o, key, at)
-  if (!isDateString(v)) fail(at, key, 'YYYY-MM-DD 形式の日付')
-  return v
 }

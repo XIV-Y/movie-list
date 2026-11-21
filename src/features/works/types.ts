@@ -39,8 +39,6 @@ export type Work = {
   status: WatchStatus
   /** 公開・放送開始年 */
   releaseYear?: number
-  /** 視聴日 (YYYY-MM-DD) */
-  watchedOn?: string
   /** 作品データベースから登録した作品のみ */
   catalog?: CatalogRef
 }
