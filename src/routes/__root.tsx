@@ -11,8 +11,15 @@ export const Route = createRootRoute({
       { charSet: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { title: 'Movie List' },
+      { name: 'theme-color', content: '#18181b' },
     ],
-    links: [{ rel: 'stylesheet', href: appCss }],
+    links: [
+      { rel: 'stylesheet', href: appCss },
+      // public/ のファイルは GitHub Pages のベースパス (/movie-list/) 配下に置かれる
+      { rel: 'icon', href: `${import.meta.env.BASE_URL}favicon.svg`, type: 'image/svg+xml' },
+      { rel: 'icon', href: `${import.meta.env.BASE_URL}favicon-32.png`, type: 'image/png', sizes: '32x32' },
+      { rel: 'apple-touch-icon', href: `${import.meta.env.BASE_URL}apple-touch-icon.png` },
+    ],
   }),
   // SPA モードでは shellComponent だけがビルド時に HTML 化され、
   // ルートの中身はブラウザ側で描画される
