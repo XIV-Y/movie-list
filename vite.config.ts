@@ -5,8 +5,8 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-// GitHub Pages (https://<user>.github.io/movie-list/) で配信するためのベースパス
-const base = process.env.BASE_PATH ?? '/movie-list/'
+// GitHub Pages (https://<user>.github.io/watch-log/) で配信するためのベースパス
+const base = process.env.BASE_PATH ?? '/watch-log/'
 
 // 外部サービスの URL などはリポジトリに置かず、リポジトリ外の .env (ローカル) か
 // GitHub Actions の Variables (CI) から読む

@@ -18,7 +18,7 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: 'stylesheet', href: appCss },
-      // public/ のファイルは GitHub Pages のベースパス (/movie-list/) 配下に置かれる
+      // public/ のファイルは GitHub Pages のベースパス (/watch-log/) 配下に置かれる
       { rel: 'icon', href: `${import.meta.env.BASE_URL}favicon.svg`, type: 'image/svg+xml' },
       { rel: 'icon', href: `${import.meta.env.BASE_URL}favicon-32.png`, type: 'image/png', sizes: '32x32' },
       { rel: 'apple-touch-icon', href: `${import.meta.env.BASE_URL}apple-touch-icon.png` },
