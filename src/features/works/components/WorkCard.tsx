@@ -1,4 +1,3 @@
-import { formatDate } from '../format.ts'
 import { WATCH_STATUS_LABELS, type Work } from '../types.ts'
 import { WorkPoster } from './WorkPoster'
 import { WorkTypeBadge } from './WorkTypeBadge'
@@ -26,11 +25,6 @@ export function WorkCard({ work }: { work: Work }) {
 
         <h3 className="line-clamp-2 text-sm font-bold leading-snug break-words">{work.title}</h3>
 
-        {work.watchedOn && (
-          <time dateTime={work.watchedOn} className="mt-auto pt-1 text-xs text-zinc-500 dark:text-zinc-400">
-            {formatDate(work.watchedOn)} 視聴
-          </time>
-        )}
       </div>
     </article>
   )
