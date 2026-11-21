@@ -2,8 +2,8 @@ import type { ReactNode } from 'react'
 import type { Work } from '../types.ts'
 import { WorkCard } from './WorkCard'
 
-/** 作品カードを並べるグリッド (スケルトンと共通) */
-export const WORK_GRID_CLASS = 'grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'
+/** 作品カードを並べるグリッド */
+const WORK_GRID_CLASS = 'grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'
 
 type Props = {
   works: readonly Work[]

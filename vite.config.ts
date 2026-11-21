@@ -28,13 +28,17 @@ export default defineConfig(({ mode }) => {
     envDir,
     plugins: [
       tanstackStart({
-        // CSR (SPA) モード: ビルド時にシェル HTML だけを生成し、描画はブラウザで行う
-        spa: {
+        // SSG: ビルド時に各ページを描画して中身入りの静的 HTML を出力する (GitHub Pages で配信)
+        prerender: {
           enabled: true,
-          prerender: {
-            outputPath: '/index.html',
-          },
+          // 出力するページはルート定義から自動で見つける (リンクはたどらない)
+          crawlLinks: false,
+          failOnError: true,
         },
+        pages: [
+          // 存在しないパスで表示する GitHub Pages の 404 ページ
+          { path: '/404', prerender: { enabled: true, outputPath: '/404.html' } },
+        ],
       }),
       viteReact(),
       tailwindcss(),

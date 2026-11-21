@@ -2,7 +2,8 @@
 
 見た映画・ドラマ・アニメなどの映像作品を個人的に記録していく Web アプリ。
 
-- [TanStack Start](https://tanstack.com/start)（SPA / CSR モード）+ React + Vite + Tailwind CSS
+- [TanStack Start](https://tanstack.com/start)（静的生成 / SSG）+ React + Vite + Tailwind CSS
+  - ビルド時に視聴記録を描画した HTML を出力するので、JavaScript の読み込み前から一覧が表示される
 - 作品情報とポスター画像は外部の作品データベース API から取得
 - 視聴記録はリポジトリ内の JSON（`src/data/works.json`）で管理し、GitHub Pages で静的ホスティング
 
@@ -41,7 +42,7 @@ chmod 600 ~/.config/movie-list/.env
 ```bash
 npm install
 npm run dev        # http://localhost:3000/movie-list/
-npm run build      # dist/client に静的ファイルを出力 (事前に validate も実行)
+npm run build      # dist/client に静的な HTML などを出力 (事前に validate も実行)
 npm run typecheck
 npm run validate   # 視聴記録 JSON の形式チェック
 ```
@@ -83,4 +84,4 @@ npm run add -- --id 129 --media movie
 初回のみ、リポジトリの **Settings → Pages → Build and deployment → Source** を **GitHub Actions** に設定すること。
 
 - ベースパスは既定で `/movie-list/`（環境変数 `BASE_PATH` で変更可）
-- 直接アクセスしたサブパスでも動くよう、ビルド後に `index.html` を `404.html` にコピーしている
+- 存在しないパスでは、ビルド時に生成した `404.html`（ページが見つかりません）が表示される

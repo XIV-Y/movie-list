@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useHydrated } from '@tanstack/react-router'
 import { WorkFilterBar } from '../features/works/components/WorkFilterBar'
 import { WorkList } from '../features/works/components/WorkList'
 import { WorkSummaryStats } from '../features/works/components/WorkSummaryStats'
@@ -16,7 +16,11 @@ export const Route = createFileRoute('/')({
 
 function Home() {
   const works = Route.useLoaderData()
-  const filters = Route.useSearch()
+  const search = Route.useSearch()
+  // HTML はビルド時に「条件なし」で生成している。ハイドレーションが終わるまでは同じ内容で描画し、
+  // その後に URL の条件を適用する (先に適用すると HTML と食い違ってハイドレーションエラーになる)
+  const hydrated = useHydrated()
+  const filters: WorkFilters = hydrated ? search : {}
   const navigate = Route.useNavigate()
   const results = applyWorkFilters(works, filters)
   const filtered = hasActiveFilters(filters)
