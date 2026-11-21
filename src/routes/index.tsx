@@ -1,12 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { WorkList } from '../features/works/components/WorkList'
 import { WorkSummaryStats } from '../features/works/components/WorkSummaryStats'
-import { DUMMY_WORKS } from '../features/works/dummy-works'
+import { getWorks } from '../features/works/repository'
 import { sortByWatchedOnDesc, summarizeWorks } from '../features/works/selectors'
 
 export const Route = createFileRoute('/')({
-  // TODO(#4): localStorage に保存したデータに置き換える
-  loader: () => DUMMY_WORKS,
+  loader: () => getWorks(),
   component: Home,
 })
 
