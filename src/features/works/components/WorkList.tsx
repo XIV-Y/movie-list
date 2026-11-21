@@ -12,7 +12,7 @@ export function WorkList({ works }: { works: readonly Work[] }) {
   }
 
   return (
-    <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
       {works.map((work) => (
         <li key={work.id}>
           <WorkCard work={work} />

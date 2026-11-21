@@ -1,6 +1,7 @@
 /// <reference types="vite/client" />
 import type { ReactNode } from 'react'
 import { HeadContent, Outlet, Scripts, createRootRoute } from '@tanstack/react-router'
+import { AppFooter } from '../components/AppFooter'
 import { AppHeader } from '../components/AppHeader'
 import appCss from '../styles.css?url'
 
@@ -25,7 +26,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
       <head>
         <HeadContent />
       </head>
-      <body className="min-h-dvh bg-zinc-50 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100">
+      <body className="flex min-h-dvh flex-col bg-zinc-50 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100">
         {children}
         <Scripts />
       </body>
@@ -37,9 +38,10 @@ function RootLayout() {
   return (
     <>
       <AppHeader />
-      <main className="mx-auto max-w-5xl px-4 py-6 sm:py-8">
+      <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-6 sm:py-8">
         <Outlet />
       </main>
+      <AppFooter />
     </>
   )
 }
