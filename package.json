@@ -10,7 +10,7 @@
     "postbuild": "node -e \"require('fs').copyFileSync('dist/client/index.html','dist/client/404.html')\"",
     "validate": "node scripts/validate-works.ts",
     "prebuild": "npm run validate",
-    "add": "node --env-file-if-exists=$HOME/.config/movie-list/env scripts/add-work.ts"
+    "add": "node --env-file-if-exists=$HOME/.config/movie-list/.env scripts/add-work.ts"
   },
   "dependencies": {
     "@tanstack/react-router": "^1.170.46",

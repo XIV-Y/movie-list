@@ -1,9 +1,9 @@
 /**
- * CATALOG で作品を検索して、視聴記録 (src/data/works.json) に追加する。
+ * 作品データベースで作品を検索して、視聴記録 (src/data/works.json) に追加する。
  *
  * 使い方:
  *   npm run add -- "作品名" [オプション]
- *   npm run add -- --catalog-id 129 --media movie [オプション]
+ *   npm run add -- --id 129 --media movie [オプション]
  *
  * オプション:
  *   --status <watched|watching|want>  視聴ステータス (既定: watched)
@@ -11,8 +11,8 @@
  *   --watched-on <YYYY-MM-DD>         視聴日 (既定: watched / watching なら今日)
  *   --note <text>                     感想メモ
  *   --tag <name>                      タグ (複数指定可)
- *   --type <movie|drama|anime|other>  種別 (既定: CATALOG の情報から推定)
- *   --catalog-id <id> --media <movie|tv> CATALOG の作品 ID を直接指定 (検索しない)
+ *   --type <movie|drama|anime|other>  種別 (既定: 作品データベースのジャンルから推定)
+ *   --id <id> --media <movie|tv>      作品データベースの作品 ID を直接指定 (検索しない)
  *   --first                           検索結果の 1 件目を選ぶ (候補を選ばない)
  */
 import { createInterface } from 'node:readline/promises'
@@ -50,7 +50,7 @@ function today(): string {
 async function pickCandidate(candidates: CatalogSearchResult[], pickFirst: boolean): Promise<CatalogSearchResult> {
   if (candidates.length === 1 || pickFirst) return candidates[0]
   if (!process.stdin.isTTY) {
-    throw new UsageError('候補が複数あります。--first か --catalog-id で作品を指定してください')
+    throw new UsageError('候補が複数あります。--first か --id で作品を指定してください')
   }
 
   const shown = candidates.slice(0, MAX_CANDIDATES)
@@ -84,7 +84,7 @@ async function main() {
       note: { type: 'string' },
       tag: { type: 'string', multiple: true, default: [] },
       type: { type: 'string' },
-      'catalog-id': { type: 'string' },
+      id: { type: 'string' },
       media: { type: 'string' },
       first: { type: 'boolean', default: false },
     },
@@ -105,11 +105,11 @@ async function main() {
 
   // 作品を決める
   let target: { mediaType: CatalogMediaType; id: number }
-  if (values['catalog-id'] !== undefined) {
-    const id = Number(values['catalog-id'])
+  if (values.id !== undefined) {
+    const id = Number(values.id)
     const mediaType = choice('media', values.media, CATALOG_MEDIA_TYPES)
-    if (!Number.isInteger(id) || id <= 0) throw new UsageError('--catalog-id は正の整数で指定してください')
-    if (!mediaType) throw new UsageError('--catalog-id を使うときは --media movie|tv も指定してください')
+    if (!Number.isInteger(id) || id <= 0) throw new UsageError('--id は正の整数で指定してください')
+    if (!mediaType) throw new UsageError('--id を使うときは --media movie|tv も指定してください')
     target = { mediaType, id }
   } else {
     if (!query) throw new UsageError('作品名を指定してください。例: npm run add -- "千と千尋の神隠し"')
