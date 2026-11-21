@@ -23,7 +23,7 @@ export function WorkFilterBar({ value, onChange, disabled }: Props) {
   }
 
   return (
-    <div role="group" aria-label="絞り込みと並び替え" className="grid grid-cols-2 gap-2 sm:flex sm:justify-end">
+    <div role="group" aria-label="絞り込みと並び替え" className="grid grid-cols-2 gap-2 sm:flex">
       <label>
         <span className="sr-only">種別</span>
         <select value={value.type ?? ''} onChange={(e) => update({ type: e.target.value })} disabled={disabled} className={`${CONTROL} w-full`}>
