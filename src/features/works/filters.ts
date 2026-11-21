@@ -32,9 +32,10 @@ function pick<T extends string>(value: unknown, values: readonly T[]): T | undef
 
 /** URL の検索パラメータを検証する。不正な値は無視して既定値として扱う */
 export function parseWorkFilters(search: Record<string, unknown>): WorkFilters {
-  const q = typeof search.q === 'string' ? search.q.trim() : ''
+  // 入力中の空白 (単語の区切りなど) を消さないよう、q はそのまま保持する。空白だけなら条件なし
+  const q = typeof search.q === 'string' && search.q.trim() !== '' ? search.q : undefined
   return {
-    q: q || undefined,
+    q,
     type: pick(search.type, WORK_TYPES),
     status: pick(search.status, WATCH_STATUSES),
     sort: pick(search.sort, NON_DEFAULT_SORTS),
