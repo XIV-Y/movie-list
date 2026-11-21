@@ -1,6 +1,6 @@
 /// <reference types="vite/client" />
 import type { ReactNode } from 'react'
-import { HeadContent, Outlet, Scripts, createRootRoute } from '@tanstack/react-router'
+import { HeadContent, Outlet, Scripts, createRootRoute, useRouter } from '@tanstack/react-router'
 import { AppFooter } from '../components/AppFooter'
 import { AppHeader } from '../components/AppHeader'
 import appCss from '../styles.css?url'
@@ -35,11 +35,16 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
 }
 
 function RootLayout() {
+  const router = useRouter()
+  // SPA モードでビルド時に HTML を出力するとき (シェル) は、ルートの中身が描画されず空になる。
+  // JavaScript の読み込みが終わるまでの間に表示するため、代わりに読み込み中の表示を入れておく
+  const ShellPending = router.isShell() ? router.options.defaultPendingComponent : undefined
+
   return (
     <>
       <AppHeader />
       <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-6 sm:py-8">
-        <Outlet />
+        {ShellPending ? <ShellPending /> : <Outlet />}
       </main>
       <AppFooter />
     </>
