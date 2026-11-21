@@ -23,7 +23,7 @@ export function WorkCard({ work }: { work: Work }) {
           {work.releaseYear !== undefined && <span>{work.releaseYear}年</span>}
         </div>
 
-        <h3 className="line-clamp-2 text-sm font-bold leading-snug break-words">{work.title}</h3>
+        <h3 className="line-clamp-2 min-h-[2lh] text-sm font-bold leading-snug break-words">{work.title}</h3>
 
       </div>
     </article>

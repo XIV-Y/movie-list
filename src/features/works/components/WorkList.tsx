@@ -1,6 +1,9 @@
 import type { Work } from '../types.ts'
 import { WorkCard } from './WorkCard'
 
+/** 作品カードを並べるグリッド (スケルトンと共通) */
+export const WORK_GRID_CLASS = 'grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'
+
 export function WorkList({ works }: { works: readonly Work[] }) {
   if (works.length === 0) {
     return (
@@ -12,7 +15,7 @@ export function WorkList({ works }: { works: readonly Work[] }) {
   }
 
   return (
-    <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+    <ul className={WORK_GRID_CLASS}>
       {works.map((work) => (
         <li key={work.id}>
           <WorkCard work={work} />
