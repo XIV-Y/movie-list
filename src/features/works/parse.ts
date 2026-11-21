@@ -1,6 +1,4 @@
 import {
-  RATING_MAX,
-  RATING_MIN,
   CATALOG_MEDIA_TYPES,
   WATCH_STATUSES,
   WORK_TYPES,
@@ -49,12 +47,7 @@ function parseWork(value: unknown, at: string): Work {
     status: oneOf(o, 'status', WATCH_STATUSES, at),
     ...(o.releaseYear !== undefined && { releaseYear: int(o, 'releaseYear', at, 1870, 2100) }),
     ...(o.watchedOn !== undefined && { watchedOn: date(o, 'watchedOn', at) }),
-    ...(o.rating !== undefined && { rating: int(o, 'rating', at, RATING_MIN, RATING_MAX) }),
-    ...(o.note !== undefined && { note: str(o, 'note', at) }),
-    tags: strArray(o, 'tags', at),
     ...(o.catalog !== undefined && { catalog: parseCatalog(o.catalog, `${at}.catalog`) }),
-    createdAt: dateTime(o, 'createdAt', at),
-    updatedAt: dateTime(o, 'updatedAt', at),
   }
 }
 
@@ -103,14 +96,6 @@ function oneOf<T extends string>(o: Record<string, unknown>, key: string, values
   return v as T
 }
 
-function strArray(o: Record<string, unknown>, key: string, at: string): string[] {
-  const v = o[key]
-  if (!Array.isArray(v) || !v.every((x) => typeof x === 'string' && x.trim() !== '')) {
-    fail(at, key, '空でない文字列の配列')
-  }
-  return v as string[]
-}
-
 /** YYYY-MM-DD 形式の日付か */
 export function isDateString(value: string): boolean {
   return DATE_RE.test(value) && !Number.isNaN(Date.parse(value))
@@ -119,11 +104,5 @@ export function isDateString(value: string): boolean {
 function date(o: Record<string, unknown>, key: string, at: string): string {
   const v = str(o, key, at)
   if (!isDateString(v)) fail(at, key, 'YYYY-MM-DD 形式の日付')
-  return v
-}
-
-function dateTime(o: Record<string, unknown>, key: string, at: string): string {
-  const v = str(o, key, at)
-  if (Number.isNaN(Date.parse(v))) fail(at, key, 'ISO 8601 形式の日時')
   return v
 }

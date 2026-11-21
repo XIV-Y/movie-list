@@ -112,7 +112,6 @@ async function main() {
   if (duplicate) throw new UsageError(`「${duplicate.title}」はすでに登録されています (id: ${duplicate.id})`)
 
   const details = await getWorkDetails(target.mediaType, target.id)
-  const now = new Date().toISOString()
   const work: Work = {
     id,
     title: details.title || details.originalTitle,
@@ -120,10 +119,7 @@ async function main() {
     status,
     releaseYear: details.releaseYear,
     watchedOn: watchedOn ?? (status === 'want' ? undefined : today()),
-    tags: [],
     catalog: { id: details.id, mediaType: details.mediaType, posterPath: details.posterPath },
-    createdAt: now,
-    updatedAt: now,
   }
 
   // undefined の項目は JSON に書かない
