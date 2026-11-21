@@ -3,8 +3,38 @@
 見た映画・ドラマ・アニメなどの映像作品を個人的に記録していく Web アプリ。
 
 - [TanStack Start](https://tanstack.com/start)（SPA / CSR モード）+ React + Vite + Tailwind CSS
-- 作品情報とポスター画像は [CATALOG](https://example.invalid) から取得
+- 作品情報とポスター画像は外部の作品データベース API から取得
 - 視聴記録はリポジトリ内の JSON（`src/data/works.json`）で管理し、GitHub Pages で静的ホスティング
+
+## 設定（リポジトリの外で管理する）
+
+外部サービスの URL・トークンなどはリポジトリに一切置かない。
+
+### ローカル: `~/.config/movie-list/.env`
+
+```bash
+mkdir -p ~/.config/movie-list
+chmod 700 ~/.config/movie-list
+# エディタで ~/.config/movie-list/.env を作成して下表の値を書く
+chmod 600 ~/.config/movie-list/.env
+```
+
+| 変数 | 用途 | 使う場所 |
+|---|---|---|
+| `CATALOG_API_BASE_URL` | 作品データベース API のベース URL | `npm run add` |
+| `CATALOG_API_TOKEN` | 作品データベース API の Read Access Token（**秘密情報**） | `npm run add` |
+| `VITE_POSTER_BASE_URL` | ポスター画像 CDN のベース URL | サイト |
+| `VITE_CREDIT_NAME` | フッターに表示するデータ提供元の名前 | サイト |
+| `VITE_CREDIT_URL` | フッターに表示するデータ提供元の URL | サイト |
+
+> [!WARNING]
+> `VITE_` で始まる変数はサイトのコードに埋め込まれて公開される。トークンには絶対に `VITE_` を付けないこと。
+> API への問い合わせは手元のスクリプトだけで行い、サイトにはトークンを含めない。
+
+### GitHub Actions: Repository variables
+
+**Settings → Secrets and variables → Actions → Variables** に `VITE_POSTER_BASE_URL` / `VITE_CREDIT_NAME` / `VITE_CREDIT_URL` を設定する。
+未設定だとデプロイのビルドが失敗する（ポスターやクレジット表記が欠けた状態で公開しないため）。
 
 ## 開発
 
@@ -18,35 +48,15 @@ npm run validate   # 視聴記録 JSON の形式チェック
 
 ## 視聴記録の追加
 
-### 1. CATALOG のトークンを用意する（初回のみ）
-
-1. [CATALOG](https://example.invalid) でアカウントを作成し、Settings → API でキーを発行する
-2. **API Read Access Token**（`eyJ...` で始まる長い方）を、**リポジトリの外**のファイルに保存する
-
-```bash
-mkdir -p ~/.config/movie-list
-chmod 700 ~/.config/movie-list
-# エディタで ~/.config/movie-list/env を作成し、次の 1 行を書く
-#   CATALOG_API_TOKEN=eyJ...
-chmod 600 ~/.config/movie-list/env
-```
-
-> [!WARNING]
-> トークンはリポジトリ内に置かないこと（`.env` も `.gitignore` 済みだが使わない）。
-> また、変数名に `VITE_` を付けるとサイトのコードに埋め込まれて公開されてしまうので付けないこと。
-> CATALOG への問い合わせは手元のスクリプトだけで行い、サイトにはトークンを含めない。
-
-### 2. 作品を追加する
-
 ```bash
 # 作品名で検索し、候補から番号で選ぶ
-npm run add -- "千と千尋の神隠し" --rating 5 --note "何度見ても良い" --tag ジブリ
+npm run add -- "作品名" --rating 5 --note "感想" --tag タグ
 
 # 見たい作品として登録
-npm run add -- "トップガン マーヴェリック" --status want
+npm run add -- "作品名" --status want
 
-# CATALOG の作品 ID を直接指定 (URL の example.org/movie/129 などから分かる)
-npm run add -- --catalog-id 129 --media movie
+# 作品データベースの作品 ID を直接指定
+npm run add -- --id 129 --media movie
 ```
 
 | オプション | 内容 |
@@ -56,8 +66,8 @@ npm run add -- --catalog-id 129 --media movie
 | `--watched-on <YYYY-MM-DD>` | 視聴日（既定: 見た・見ている なら今日） |
 | `--note <text>` | 感想メモ |
 | `--tag <name>` | タグ（複数指定可） |
-| `--type <movie\|drama\|anime\|other>` | 種別（既定: CATALOG のジャンルから推定） |
-| `--catalog-id <id> --media <movie\|tv>` | CATALOG の作品 ID を直接指定 |
+| `--type <movie\|drama\|anime\|other>` | 種別（既定: ジャンルから推定） |
+| `--id <id> --media <movie\|tv>` | 作品 ID を直接指定 |
 | `--first` | 検索結果の 1 件目を選ぶ |
 
 追加したら `src/data/works.json` をコミットして push する。
@@ -73,7 +83,3 @@ npm run add -- --catalog-id 129 --media movie
 
 - ベースパスは既定で `/movie-list/`（環境変数 `BASE_PATH` で変更可）
 - 直接アクセスしたサブパスでも動くよう、ビルド後に `index.html` を `404.html` にコピーしている
-
-## クレジット
-
-This product uses the CATALOG API but is not endorsed or certified by CATALOG.

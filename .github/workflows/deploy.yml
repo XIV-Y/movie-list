@@ -31,6 +31,10 @@ jobs:
       - run: npm run build
         env:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+          # 外部サービスの URL などはリポジトリに書かず、Settings → Secrets and variables → Actions → Variables で管理する
+          VITE_POSTER_BASE_URL: ${{ vars.VITE_POSTER_BASE_URL }}
+          VITE_CREDIT_NAME: ${{ vars.VITE_CREDIT_NAME }}
+          VITE_CREDIT_URL: ${{ vars.VITE_CREDIT_URL }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist/client

@@ -1,4 +1,4 @@
-import { posterSrcSet, posterUrl } from '../catalog-image.ts'
+import { isPosterAvailable, posterSrcSet, posterUrl } from '../poster-image.ts'
 import type { Work } from '../types.ts'
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 
 /** 2:3 のポスター画像。ポスターがない作品はタイトル入りのプレースホルダーを表示する */
 export function WorkPoster({ work, sizes }: Props) {
-  const posterPath = work.catalog?.posterPath
+  const posterPath = isPosterAvailable() ? work.catalog?.posterPath : undefined
 
   return (
     <div className="relative aspect-[2/3] overflow-hidden bg-zinc-200 dark:bg-zinc-800">

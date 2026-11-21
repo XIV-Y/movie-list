@@ -23,12 +23,12 @@ export const WATCH_STATUS_LABELS: Record<WatchStatus, string> = {
 export const RATING_MIN = 1
 export const RATING_MAX = 5
 
-/** CATALOG 上の作品の区分 */
+/** 外部の作品データベース上の作品の区分 */
 export const CATALOG_MEDIA_TYPES = ['movie', 'tv'] as const
 export type CatalogMediaType = (typeof CATALOG_MEDIA_TYPES)[number]
 
-/** CATALOG (作品データベース) から取得した作品情報 */
-export type CatalogInfo = {
+/** 外部の作品データベースから取得した作品情報 */
+export type CatalogRef = {
   id: number
   mediaType: CatalogMediaType
   /** ポスター画像のパス (例: "/abc123.jpg")。画像 CDN の URL 生成に使う */
@@ -50,8 +50,8 @@ export type Work = {
   /** 感想メモ */
   note?: string
   tags: string[]
-  /** CATALOG から登録した作品のみ */
-  catalog?: CatalogInfo
+  /** 作品データベースから登録した作品のみ */
+  catalog?: CatalogRef
   /** 作成日時 (ISO 8601) */
   createdAt: string
   /** 更新日時 (ISO 8601) */

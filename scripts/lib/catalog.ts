@@ -1,14 +1,13 @@
 /**
- * CATALOG (作品データベース) API クライアント。手元のスクリプト専用。
- * トークンは環境変数 CATALOG_API_TOKEN から読む。サイトのコードからは import しないこと。
- * https://example.invalid
+ * 作品データベース API のクライアント。手元のスクリプト専用。
+ * 接続先とトークンは環境変数 (CATALOG_API_BASE_URL / CATALOG_API_TOKEN) から読む。
+ * サイトのコードからは import しないこと。
  */
 import type { CatalogMediaType, WorkType } from '../../src/features/works/types.ts'
 
-const API_BASE = 'https://example.invalid'
 const LANGUAGE = 'ja-JP'
 
-/** CATALOG のジャンル ID */
+/** 作品データベースのジャンル ID */
 const GENRE = {
   animation: 16,
   documentary: 99,
@@ -34,32 +33,35 @@ export class CatalogError extends Error {
   override name = 'CatalogError'
 }
 
-function getToken(): string {
-  const token = process.env.CATALOG_API_TOKEN
-  if (!token) {
+const ENV_FILE = '~/.config/movie-list/.env'
+
+function requireEnv(name: 'CATALOG_API_BASE_URL' | 'CATALOG_API_TOKEN', example: string): string {
+  const value = process.env[name]
+  if (!value) {
     throw new CatalogError(
       [
-        '環境変数 CATALOG_API_TOKEN が設定されていません。',
-        'CATALOG の「API Read Access Token」を ~/.config/movie-list/env に次の形式で保存してください:',
-        '  CATALOG_API_TOKEN=eyJ...',
-        '(リポジトリ内には置かないでください)',
+        `環境変数 ${name} が設定されていません。`,
+        `${ENV_FILE} に次の形式で保存してください (リポジトリ内には置かないこと):`,
+        `  ${name}=${example}`,
       ].join('\n'),
     )
   }
-  return token
+  return value
 }
 
 async function request<T>(path: string, params: Record<string, string> = {}): Promise<T> {
-  const url = new URL(`${API_BASE}${path}`)
+  const base = requireEnv('CATALOG_API_BASE_URL', 'https://...').replace(/\/+$/, '')
+  const token = requireEnv('CATALOG_API_TOKEN', '<API Read Access Token>')
+  const url = new URL(`${base}${path}`)
   for (const [key, value] of Object.entries({ language: LANGUAGE, ...params })) {
     url.searchParams.set(key, value)
   }
   const res = await fetch(url, {
-    headers: { Authorization: `Bearer ${getToken()}`, Accept: 'application/json' },
+    headers: { Authorization: `Bearer ${token}`, Accept: 'application/json' },
   })
   if (!res.ok) {
     const hint = res.status === 401 ? ' (トークンが正しいか確認してください)' : ''
-    throw new CatalogError(`CATALOG API エラー: ${res.status} ${res.statusText}${hint}`)
+    throw new CatalogError(`作品データベース API エラー: ${res.status} ${res.statusText}${hint}`)
   }
   return (await res.json()) as T
 }
@@ -108,7 +110,7 @@ export async function getWorkDetails(mediaType: CatalogMediaType, id: number): P
   return toResult(raw, mediaType)
 }
 
-/** CATALOG のジャンルと区分から、このアプリの種別を推定する */
+/** 作品データベースのジャンルと区分から、このアプリの種別を推定する */
 export function inferWorkType(details: Pick<CatalogDetails, 'mediaType' | 'genreIds'>): WorkType {
   const genres = new Set(details.genreIds)
   if (genres.has(GENRE.animation)) return 'anime'
