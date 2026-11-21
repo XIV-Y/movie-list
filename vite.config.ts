@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import viteReact from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 
 // GitHub Pages (https://<user>.github.io/movie-list/) で配信するためのベースパス
 const base = process.env.BASE_PATH ?? '/movie-list/'
@@ -18,5 +19,6 @@ export default defineConfig({
       },
     }),
     viteReact(),
+    tailwindcss(),
   ],
 })

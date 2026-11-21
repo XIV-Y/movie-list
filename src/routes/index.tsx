@@ -1,13 +1,34 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { WorkList } from '../features/works/components/WorkList'
+import { WorkSummaryStats } from '../features/works/components/WorkSummaryStats'
+import { DUMMY_WORKS } from '../features/works/dummy-works'
+import { sortByWatchedOnDesc, summarizeWorks } from '../features/works/selectors'
 
 export const Route = createFileRoute('/')({
+  // TODO(#4): localStorage に保存したデータに置き換える
+  loader: () => DUMMY_WORKS,
   component: Home,
 })
 
 function Home() {
+  const works = Route.useLoaderData()
+  const sorted = sortByWatchedOnDesc(works)
+
   return (
-    <main>
-      <h1>Hello world</h1>
-    </main>
+    <div className="space-y-8">
+      <section aria-labelledby="summary-heading" className="space-y-3">
+        <h1 id="summary-heading" className="text-xl font-bold">
+          視聴記録
+        </h1>
+        <WorkSummaryStats summary={summarizeWorks(works)} />
+      </section>
+
+      <section aria-labelledby="list-heading" className="space-y-3">
+        <h2 id="list-heading" className="text-lg font-bold">
+          最近の記録
+        </h2>
+        <WorkList works={sorted} />
+      </section>
+    </div>
   )
 }
