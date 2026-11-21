@@ -4,7 +4,7 @@ import {
   CATALOG_MEDIA_TYPES,
   WATCH_STATUSES,
   WORK_TYPES,
-  type CatalogInfo,
+  type CatalogRef,
   type Work,
 } from './types.ts'
 
@@ -58,9 +58,9 @@ function parseWork(value: unknown, at: string): Work {
   }
 }
 
-function parseCatalog(value: unknown, at: string): CatalogInfo {
+function parseCatalog(value: unknown, at: string): CatalogRef {
   const o = asObject(value, at)
-  const catalog: CatalogInfo = {
+  const catalog: CatalogRef = {
     id: int(o, 'id', at, 1, Number.MAX_SAFE_INTEGER),
     mediaType: oneOf(o, 'mediaType', CATALOG_MEDIA_TYPES, at),
   }
