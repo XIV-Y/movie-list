@@ -8,7 +8,7 @@ import { getWorks } from '../features/works/repository'
 import { summarizeWorks } from '../features/works/selectors'
 
 export const Route = createFileRoute('/')({
-  // 検索・絞り込み・並び替えの条件は URL の検索パラメータに保持する (?q=...&type=movie&sort=title)
+  // 絞り込み・並び替えの条件は URL の検索パラメータに保持する (?type=movie&sort=title)
   validateSearch: (search): WorkFilters => parseWorkFilters(search),
   loader: () => getWorks(),
   component: Home,

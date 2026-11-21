@@ -1,5 +1,5 @@
 import { DEFAULT_SORT, SORT_KEYS, SORT_LABELS, type WorkFilters } from '../filters.ts'
-import { WATCH_STATUSES, WATCH_STATUS_LABELS, WORK_TYPES, WORK_TYPE_LABELS } from '../types.ts'
+import { WORK_TYPES, WORK_TYPE_LABELS } from '../types.ts'
 
 type Props = {
   value: WorkFilters
@@ -13,7 +13,7 @@ const CONTROL =
   'focus-visible:border-zinc-500 focus-visible:ring-2 focus-visible:ring-zinc-400/40 disabled:opacity-60 ' +
   'dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100'
 
-/** 一覧の検索・絞り込み・並び替え */
+/** 一覧の絞り込み (種別) と並び替え */
 export function WorkFilterBar({ value, onChange, disabled }: Props) {
   // 既定値の項目は undefined にして URL に出さない
   const update = (patch: Partial<Record<keyof WorkFilters, string>>) => {
@@ -23,19 +23,7 @@ export function WorkFilterBar({ value, onChange, disabled }: Props) {
   }
 
   return (
-    <div role="search" className="grid grid-cols-2 gap-2 sm:grid-cols-[minmax(0,1fr)_auto_auto_auto]">
-      <label className="col-span-2 sm:col-span-1">
-        <span className="sr-only">タイトルで検索</span>
-        <input
-          type="search"
-          placeholder="タイトルで検索"
-          value={value.q ?? ''}
-          onChange={(e) => update({ q: e.target.value })}
-          disabled={disabled}
-          className={`${CONTROL} w-full`}
-        />
-      </label>
-
+    <div role="group" aria-label="絞り込みと並び替え" className="grid grid-cols-2 gap-2 sm:flex">
       <label>
         <span className="sr-only">種別</span>
         <select value={value.type ?? ''} onChange={(e) => update({ type: e.target.value })} disabled={disabled} className={`${CONTROL} w-full`}>
@@ -49,18 +37,6 @@ export function WorkFilterBar({ value, onChange, disabled }: Props) {
       </label>
 
       <label>
-        <span className="sr-only">視聴ステータス</span>
-        <select value={value.status ?? ''} onChange={(e) => update({ status: e.target.value })} disabled={disabled} className={`${CONTROL} w-full`}>
-          <option value="">すべてのステータス</option>
-          {WATCH_STATUSES.map((s) => (
-            <option key={s} value={s}>
-              {WATCH_STATUS_LABELS[s]}
-            </option>
-          ))}
-        </select>
-      </label>
-
-      <label className="col-span-2 sm:col-span-1">
         <span className="sr-only">並び順</span>
         <select value={value.sort ?? DEFAULT_SORT} onChange={(e) => update({ sort: e.target.value })} disabled={disabled} className={`${CONTROL} w-full`}>
           {SORT_KEYS.map((k) => (

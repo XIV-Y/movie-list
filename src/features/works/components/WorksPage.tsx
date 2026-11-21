@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 
 type Props = {
   summary: ReactNode
-  /** 検索・絞り込み・並び替え */
+  /** 絞り込み・並び替え */
   toolbar: ReactNode
   /** 表示件数 (1 行分の高さを常に確保する) */
   resultInfo: ReactNode
@@ -21,10 +21,12 @@ export function WorksPage({ summary, toolbar, resultInfo, list }: Props) {
       </section>
 
       <section aria-labelledby="list-heading" className="space-y-3">
-        <h2 id="list-heading" className="text-lg font-bold">
-          記録一覧
-        </h2>
-        {toolbar}
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h2 id="list-heading" className="text-lg font-bold">
+            記録一覧
+          </h2>
+          <div className="w-full sm:w-auto">{toolbar}</div>
+        </div>
         <p className="h-5 text-sm text-zinc-500 dark:text-zinc-400" aria-live="polite">
           {resultInfo}
         </p>
