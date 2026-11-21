@@ -1,134 +1,86 @@
 [
   {
-    "id": "movie-361743",
-    "title": "トップガン マーヴェリック",
+    "id": "movie-36657",
+    "title": "X-MEN",
     "type": "movie",
-    "status": "want",
-    "releaseYear": 2022,
-    "catalog": {
-      "id": 361743,
-      "mediaType": "movie",
-      "posterPath": "/qw19Vqa16HlmKyxCADncAlb0SWg.jpg"
-    }
-  },
-  {
-    "id": "tv-76757",
-    "title": "ゴールデンカムイ",
-    "type": "anime",
-    "status": "want",
-    "releaseYear": 2018,
-    "catalog": {
-      "id": 76757,
-      "mediaType": "tv",
-      "posterPath": "/rVRpYvsyPgUUsuK0kQbya67ROPZ.jpg"
-    }
-  },
-  {
-    "id": "tv-55925",
-    "title": "半沢直樹",
-    "type": "drama",
     "status": "watched",
-    "releaseYear": 2013,
+    "releaseYear": 2000,
     "catalog": {
-      "id": 55925,
-      "mediaType": "tv",
-      "posterPath": "/4Qnk3QvC8gxTWH5uM8thovg1j4Q.jpg"
+      "id": 36657,
+      "mediaType": "movie",
+      "posterPath": "/axu6yoVMnoXIPL2XTIxXRVq2JGL.jpg"
     }
   },
   {
-    "id": "tv-1044",
-    "title": "プラネットアース",
-    "type": "other",
+    "id": "movie-36658",
+    "title": "X-MEN2",
+    "type": "movie",
+    "status": "watched",
+    "releaseYear": 2003,
+    "catalog": {
+      "id": 36658,
+      "mediaType": "movie",
+      "posterPath": "/aULWfwzhEQCqppZYjJWPsPMffrN.jpg"
+    }
+  },
+  {
+    "id": "movie-36668",
+    "title": "X-MEN：ファイナル ディシジョン",
+    "type": "movie",
     "status": "watched",
     "releaseYear": 2006,
     "catalog": {
-      "id": 1044,
-      "mediaType": "tv",
-      "posterPath": "/bNcNxUtZ520d5de5s78onoiSiwQ.jpg"
+      "id": 36668,
+      "mediaType": "movie",
+      "posterPath": "/8ytUYxV7Puzf9lDdrqFlinVeOZg.jpg"
     }
   },
   {
-    "id": "tv-120089",
-    "title": "SPY×FAMILY",
-    "type": "anime",
-    "status": "watched",
-    "releaseYear": 2022,
-    "catalog": {
-      "id": 120089,
-      "mediaType": "tv",
-      "posterPath": "/vaIREdPGZOnW9Jrs86mheVVlIQQ.jpg"
-    }
-  },
-  {
-    "id": "movie-315011",
-    "title": "シン・ゴジラ",
+    "id": "movie-49538",
+    "title": "X-MEN：ファースト・ジェネレーション",
     "type": "movie",
     "status": "watched",
-    "releaseYear": 2016,
+    "releaseYear": 2011,
     "catalog": {
-      "id": 315011,
+      "id": 49538,
       "mediaType": "movie",
-      "posterPath": "/8ulwqKiHxz5uH0g0I1BVeNDTWlo.jpg"
+      "posterPath": "/9ClbjVada4E8vUtoq7YfBdLwPSj.jpg"
     }
   },
   {
-    "id": "movie-129",
-    "title": "千と千尋の神隠し",
-    "type": "anime",
-    "status": "watched",
-    "releaseYear": 2001,
-    "catalog": {
-      "id": 129,
-      "mediaType": "movie",
-      "posterPath": "/8TEs6twIANAc2qiU8m17JO8Ujcx.jpg"
-    }
-  },
-  {
-    "id": "tv-1396",
-    "title": "ブレイキング・バッド",
-    "type": "drama",
-    "status": "watching",
-    "releaseYear": 2008,
-    "catalog": {
-      "id": 1396,
-      "mediaType": "tv",
-      "posterPath": "/anFx9aTOOYqgS3v7x3R84Kz67ly.jpg"
-    }
-  },
-  {
-    "id": "movie-157336",
-    "title": "インターステラー",
+    "id": "movie-127585",
+    "title": "X-MEN：フューチャー＆パスト",
     "type": "movie",
     "status": "watched",
     "releaseYear": 2014,
     "catalog": {
-      "id": 157336,
+      "id": 127585,
       "mediaType": "movie",
-      "posterPath": "/auQjFBfCWSL6DpQhWVCZ6wFtDm6.jpg"
+      "posterPath": "/v3nzutbUIGZROj82ZrPpVvx8xwU.jpg"
     }
   },
   {
-    "id": "tv-68293",
-    "title": "逃げるは恥だが役に立つ",
-    "type": "drama",
+    "id": "movie-246655",
+    "title": "X-MEN：アポカリプス",
+    "type": "movie",
     "status": "watched",
     "releaseYear": 2016,
     "catalog": {
-      "id": 68293,
-      "mediaType": "tv",
-      "posterPath": "/hZwCvI7x2f2ZG0ZybInfQeGyyIA.jpg"
+      "id": 246655,
+      "mediaType": "movie",
+      "posterPath": "/wK8pmNSzfdnYTBROt4veWJ0FC2w.jpg"
     }
   },
   {
-    "id": "tv-209867",
-    "title": "葬送のフリーレン",
-    "type": "anime",
-    "status": "watching",
-    "releaseYear": 2023,
+    "id": "movie-320288",
+    "title": "X-MEN：ダーク・フェニックス",
+    "type": "movie",
+    "status": "watched",
+    "releaseYear": 2019,
     "catalog": {
-      "id": 209867,
-      "mediaType": "tv",
-      "posterPath": "/dhzbCznEzU67RXWYb53fyPe9Keb.jpg"
+      "id": 320288,
+      "mediaType": "movie",
+      "posterPath": "/h1H2eBYr2mmqjr0NPofK3ZPSRCt.jpg"
     }
   }
 ]
