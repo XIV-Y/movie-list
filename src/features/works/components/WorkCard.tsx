@@ -1,6 +1,5 @@
 import { formatDate } from '../format.ts'
 import { WATCH_STATUS_LABELS, type Work } from '../types.ts'
-import { RatingStars } from './RatingStars'
 import { WorkPoster } from './WorkPoster'
 import { WorkTypeBadge } from './WorkTypeBadge'
 
@@ -27,21 +26,10 @@ export function WorkCard({ work }: { work: Work }) {
 
         <h3 className="line-clamp-2 text-sm font-bold leading-snug break-words">{work.title}</h3>
 
-        {work.note && <p className="line-clamp-2 text-xs text-zinc-600 dark:text-zinc-400">{work.note}</p>}
-
-        <div className="mt-auto flex flex-wrap items-center gap-x-2 gap-y-1 pt-1 text-xs text-zinc-500 dark:text-zinc-400">
-          {work.rating !== undefined && <RatingStars rating={work.rating} />}
-          {work.watchedOn && <time dateTime={work.watchedOn}>{formatDate(work.watchedOn)}</time>}
-        </div>
-
-        {work.tags.length > 0 && (
-          <ul className="flex flex-wrap gap-1" aria-label="タグ">
-            {work.tags.map((tag) => (
-              <li key={tag} className="rounded bg-zinc-100 px-1.5 py-0.5 text-[11px] text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
-                #{tag}
-              </li>
-            ))}
-          </ul>
+        {work.watchedOn && (
+          <time dateTime={work.watchedOn} className="mt-auto pt-1 text-xs text-zinc-500 dark:text-zinc-400">
+            {formatDate(work.watchedOn)} 視聴
+          </time>
         )}
       </div>
     </article>
