@@ -1,5 +1,6 @@
 import { getWorks } from '../repository.ts'
 import { WORK_GRID_CLASS, WorkList } from './WorkList'
+import { WorkFilterBar } from './WorkFilterBar'
 import { WorkCardSkeleton } from './WorkCardSkeleton'
 import { WorkSummaryStats } from './WorkSummaryStats'
 import { WorksPage } from './WorksPage'
@@ -19,6 +20,9 @@ export function WorksPageSkeleton() {
       </p>
       <WorksPage
         summary={<WorkSummaryStats />}
+        // 検索バーも同じ寸法で表示しておく (操作は読み込み後から)
+        toolbar={<WorkFilterBar value={{}} onChange={() => {}} disabled />}
+        resultInfo={`${count} 件`}
         list={
           // 0 件のときは実際の画面と同じ「まだ記録がありません」を出す
           count === 0 ? (

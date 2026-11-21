@@ -1,7 +1,16 @@
 import type { ReactNode } from 'react'
 
+type Props = {
+  summary: ReactNode
+  /** 検索・絞り込み・並び替え */
+  toolbar: ReactNode
+  /** 表示件数 (1 行分の高さを常に確保する) */
+  resultInfo: ReactNode
+  list: ReactNode
+}
+
 /** TOP ページの骨組み。実際の画面とスケルトンで共通にして、切り替え時に寸法が変わらないようにする */
-export function WorksPage({ summary, list }: { summary: ReactNode; list: ReactNode }) {
+export function WorksPage({ summary, toolbar, resultInfo, list }: Props) {
   return (
     <div className="space-y-8">
       <section aria-labelledby="summary-heading" className="space-y-3">
@@ -13,8 +22,12 @@ export function WorksPage({ summary, list }: { summary: ReactNode; list: ReactNo
 
       <section aria-labelledby="list-heading" className="space-y-3">
         <h2 id="list-heading" className="text-lg font-bold">
-          最近の記録
+          記録一覧
         </h2>
+        {toolbar}
+        <p className="h-5 text-sm text-zinc-500 dark:text-zinc-400" aria-live="polite">
+          {resultInfo}
+        </p>
         {list}
       </section>
     </div>
