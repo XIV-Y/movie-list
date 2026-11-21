@@ -5,3 +5,7 @@ dist
 .nitro
 *.local
 .DS_Store
+
+# 秘密情報 (CATALOG トークンは ~/.config/movie-list/env に置く。リポジトリには絶対に入れない)
+.env
+.env.*
