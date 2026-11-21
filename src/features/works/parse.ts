@@ -37,8 +37,12 @@ export class WorksParseError extends Error {
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/
 
+const WORK_KEYS = ['id', 'title', 'type', 'status', 'releaseYear', 'watchedOn', 'catalog']
+const CATALOG_KEYS = ['id', 'mediaType', 'posterPath']
+
 function parseWork(value: unknown, at: string): Work {
   const o = asObject(value, at)
+  rejectUnknownKeys(o, WORK_KEYS, at)
   // キーの順序をそろえて返す (スクリプトで JSON に書き戻すときの並び順になる)
   return {
     id: str(o, 'id', at),
@@ -53,6 +57,7 @@ function parseWork(value: unknown, at: string): Work {
 
 function parseCatalog(value: unknown, at: string): CatalogRef {
   const o = asObject(value, at)
+  rejectUnknownKeys(o, CATALOG_KEYS, at)
   const catalog: CatalogRef = {
     id: int(o, 'id', at, 1, Number.MAX_SAFE_INTEGER),
     mediaType: oneOf(o, 'mediaType', CATALOG_MEDIA_TYPES, at),
@@ -70,6 +75,14 @@ function asObject(value: unknown, at: string): Record<string, unknown> {
     throw new WorksParseError(`${at} はオブジェクトである必要があります`)
   }
   return value as Record<string, unknown>
+}
+
+/** 手で編集したときのキー名の誤りや、廃止した項目の残りを検出する */
+function rejectUnknownKeys(o: Record<string, unknown>, allowed: readonly string[], at: string): void {
+  const unknown = Object.keys(o).filter((key) => !allowed.includes(key))
+  if (unknown.length > 0) {
+    throw new WorksParseError(`${at} に未知の項目があります: ${unknown.join(', ')} (使える項目: ${allowed.join(', ')})`)
+  }
 }
 
 function fail(at: string, key: string, expected: string): never {
