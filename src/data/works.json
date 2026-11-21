@@ -1,154 +1,222 @@
 [
   {
-    "id": "w01",
-    "title": "星降る街のレイルウェイ",
-    "type": "movie",
-    "status": "watched",
-    "releaseYear": 2024,
-    "watchedOn": "2026-11-15",
-    "rating": 5,
-    "note": "終盤の駅のシーンで泣いた。劇伴が最高。",
-    "tags": [
-      "SF",
-      "劇場"
-    ],
-    "createdAt": "2026-11-15T21:10:00+09:00",
-    "updatedAt": "2026-11-15T21:10:00+09:00"
-  },
-  {
-    "id": "w02",
-    "title": "深夜0時の探偵事務所",
-    "type": "drama",
-    "status": "watching",
-    "releaseYear": 2026,
-    "watchedOn": "2026-11-18",
-    "rating": 4,
-    "note": "第5話まで視聴。毎話の伏線回収が気持ちいい。",
-    "tags": [
-      "ミステリー",
-      "配信"
-    ],
-    "createdAt": "2026-11-02T23:40:00+09:00",
-    "updatedAt": "2026-11-18T23:55:00+09:00"
-  },
-  {
-    "id": "w03",
-    "title": "風の谷のエンジニア",
-    "type": "anime",
-    "status": "watched",
-    "releaseYear": 2025,
-    "watchedOn": "2026-11-10",
-    "rating": 4,
-    "note": "作画がずっと安定していた。2期に期待。",
-    "tags": [
-      "お仕事",
-      "配信"
-    ],
-    "createdAt": "2026-10-01T20:00:00+09:00",
-    "updatedAt": "2026-11-10T22:30:00+09:00"
-  },
-  {
-    "id": "w04",
-    "title": "海辺の図書館",
-    "type": "movie",
-    "status": "watched",
-    "releaseYear": 2019,
-    "watchedOn": "2026-11-03",
-    "rating": 3,
-    "note": "静かな映画。雨の日に観るのがおすすめ。",
-    "tags": [
-      "ヒューマン"
-    ],
-    "createdAt": "2026-11-03T16:00:00+09:00",
-    "updatedAt": "2026-11-03T16:00:00+09:00"
-  },
-  {
-    "id": "w05",
-    "title": "ギャラクシー・キッチン",
+    "id": "tv-209867",
+    "title": "葬送のフリーレン",
     "type": "anime",
     "status": "watching",
-    "releaseYear": 2026,
+    "releaseYear": 2023,
     "watchedOn": "2026-11-19",
     "rating": 5,
-    "note": "宇宙で料理するだけなのに面白い。",
+    "note": "毎話の余韻がすごい。音楽も良い。",
     "tags": [
-      "グルメ",
-      "SF"
-    ],
-    "createdAt": "2026-10-08T00:30:00+09:00",
-    "updatedAt": "2026-11-19T00:45:00+09:00"
-  },
-  {
-    "id": "w06",
-    "title": "東京ラストオーダー",
-    "type": "drama",
-    "status": "watched",
-    "releaseYear": 2023,
-    "watchedOn": "2026-10-28",
-    "rating": 4,
-    "tags": [
-      "ヒューマン",
-      "グルメ"
-    ],
-    "createdAt": "2026-10-28T22:00:00+09:00",
-    "updatedAt": "2026-10-28T22:00:00+09:00"
-  },
-  {
-    "id": "w07",
-    "title": "鉄と花のクロニクル",
-    "type": "anime",
-    "status": "watched",
-    "releaseYear": 2021,
-    "watchedOn": "2026-10-20",
-    "rating": 5,
-    "note": "全24話を一気見。最終話は必見。",
-    "tags": [
-      "ロボット",
+      "ファンタジー",
       "配信"
     ],
-    "createdAt": "2026-10-20T03:00:00+09:00",
-    "updatedAt": "2026-10-20T03:00:00+09:00"
+    "catalog": {
+      "id": 209867,
+      "mediaType": "tv",
+      "posterPath": "/dhzbCznEzU67RXWYb53fyPe9Keb.jpg"
+    },
+    "createdAt": "2026-11-21T15:04:14.837Z",
+    "updatedAt": "2026-11-21T15:04:14.837Z"
   },
   {
-    "id": "w08",
-    "title": "雪原のドキュメント",
-    "type": "other",
+    "id": "tv-68293",
+    "title": "逃げるは恥だが役に立つ",
+    "type": "drama",
+    "status": "watched",
+    "releaseYear": 2016,
+    "watchedOn": "2026-11-16",
+    "rating": 4,
+    "note": "何度目かの見返し。テンポが良くて一気に見られる。",
+    "tags": [
+      "ラブコメ"
+    ],
+    "catalog": {
+      "id": 68293,
+      "mediaType": "tv",
+      "posterPath": "/hZwCvI7x2f2ZG0ZybInfQeGyyIA.jpg"
+    },
+    "createdAt": "2026-11-21T15:04:15.148Z",
+    "updatedAt": "2026-11-21T15:04:15.148Z"
+  },
+  {
+    "id": "movie-157336",
+    "title": "インターステラー",
+    "type": "movie",
+    "status": "watched",
+    "releaseYear": 2014,
+    "watchedOn": "2026-11-09",
+    "rating": 5,
+    "note": "終盤の展開で鳥肌。IMAX で見直したい。",
+    "tags": [
+      "SF",
+      "宇宙"
+    ],
+    "catalog": {
+      "id": 157336,
+      "mediaType": "movie",
+      "posterPath": "/auQjFBfCWSL6DpQhWVCZ6wFtDm6.jpg"
+    },
+    "createdAt": "2026-11-21T15:04:15.360Z",
+    "updatedAt": "2026-11-21T15:04:15.360Z"
+  },
+  {
+    "id": "tv-1396",
+    "title": "ブレイキング・バッド",
+    "type": "drama",
+    "status": "watching",
+    "releaseYear": 2008,
+    "watchedOn": "2026-11-05",
+    "rating": 5,
+    "note": "シーズン3まで視聴。",
+    "tags": [
+      "クライム",
+      "海外ドラマ"
+    ],
+    "catalog": {
+      "id": 1396,
+      "mediaType": "tv",
+      "posterPath": "/anFx9aTOOYqgS3v7x3R84Kz67ly.jpg"
+    },
+    "createdAt": "2026-11-21T15:04:15.613Z",
+    "updatedAt": "2026-11-21T15:04:15.613Z"
+  },
+  {
+    "id": "movie-129",
+    "title": "千と千尋の神隠し",
+    "type": "anime",
+    "status": "watched",
+    "releaseYear": 2001,
+    "watchedOn": "2026-10-30",
+    "rating": 5,
+    "note": "何度見ても新しい発見がある。",
+    "tags": [
+      "ジブリ"
+    ],
+    "catalog": {
+      "id": 129,
+      "mediaType": "movie",
+      "posterPath": "/8TEs6twIANAc2qiU8m17JO8Ujcx.jpg"
+    },
+    "createdAt": "2026-11-21T15:04:15.882Z",
+    "updatedAt": "2026-11-21T15:04:15.882Z"
+  },
+  {
+    "id": "movie-315011",
+    "title": "シン・ゴジラ",
+    "type": "movie",
+    "status": "watched",
+    "releaseYear": 2016,
+    "watchedOn": "2026-10-21",
+    "rating": 4,
+    "note": "会議シーンの早口がクセになる。",
+    "tags": [
+      "特撮"
+    ],
+    "catalog": {
+      "id": 315011,
+      "mediaType": "movie",
+      "posterPath": "/8ulwqKiHxz5uH0g0I1BVeNDTWlo.jpg"
+    },
+    "createdAt": "2026-11-21T15:04:16.132Z",
+    "updatedAt": "2026-11-21T15:04:16.132Z"
+  },
+  {
+    "id": "tv-120089",
+    "title": "SPY×FAMILY",
+    "type": "anime",
     "status": "watched",
     "releaseYear": 2022,
     "watchedOn": "2026-10-12",
-    "rating": 3,
-    "note": "ドキュメンタリー。映像がとにかく美しい。",
+    "rating": 4,
+    "note": "アーニャがかわいい。",
     "tags": [
-      "ドキュメンタリー"
+      "コメディ",
+      "配信"
     ],
-    "createdAt": "2026-10-12T19:00:00+09:00",
-    "updatedAt": "2026-10-12T19:00:00+09:00"
+    "catalog": {
+      "id": 120089,
+      "mediaType": "tv",
+      "posterPath": "/vaIREdPGZOnW9Jrs86mheVVlIQQ.jpg"
+    },
+    "createdAt": "2026-11-21T15:04:16.370Z",
+    "updatedAt": "2026-11-21T15:04:16.370Z"
   },
   {
-    "id": "w09",
-    "title": "ミッドナイト・ハイウェイ",
+    "id": "tv-1044",
+    "title": "プラネットアース",
+    "type": "other",
+    "status": "watched",
+    "releaseYear": 2006,
+    "watchedOn": "2026-09-28",
+    "rating": 4,
+    "note": "映像が圧倒的。",
+    "tags": [
+      "ドキュメンタリー",
+      "自然"
+    ],
+    "catalog": {
+      "id": 1044,
+      "mediaType": "tv",
+      "posterPath": "/bNcNxUtZ520d5de5s78onoiSiwQ.jpg"
+    },
+    "createdAt": "2026-11-21T15:04:16.617Z",
+    "updatedAt": "2026-11-21T15:04:16.617Z"
+  },
+  {
+    "id": "tv-55925",
+    "title": "半沢直樹",
+    "type": "drama",
+    "status": "watched",
+    "releaseYear": 2013,
+    "watchedOn": "2026-09-14",
+    "rating": 3,
+    "tags": [
+      "企業もの"
+    ],
+    "catalog": {
+      "id": 55925,
+      "mediaType": "tv",
+      "posterPath": "/4Qnk3QvC8gxTWH5uM8thovg1j4Q.jpg"
+    },
+    "createdAt": "2026-11-21T15:04:16.882Z",
+    "updatedAt": "2026-11-21T15:04:16.882Z"
+  },
+  {
+    "id": "movie-361743",
+    "title": "トップガン マーヴェリック",
     "type": "movie",
     "status": "want",
-    "releaseYear": 2026,
+    "releaseYear": 2022,
+    "note": "友人のおすすめ。劇場で見たかった。",
     "tags": [
-      "アクション",
-      "劇場"
+      "アクション"
     ],
-    "createdAt": "2026-11-20T12:00:00+09:00",
-    "updatedAt": "2026-11-20T12:00:00+09:00"
+    "catalog": {
+      "id": 361743,
+      "mediaType": "movie",
+      "posterPath": "/qw19Vqa16HlmKyxCADncAlb0SWg.jpg"
+    },
+    "createdAt": "2026-11-21T15:04:17.161Z",
+    "updatedAt": "2026-11-21T15:04:17.161Z"
   },
   {
-    "id": "w10",
-    "title": "放課後のオーケストラ",
-    "type": "drama",
+    "id": "tv-76757",
+    "title": "ゴールデンカムイ",
+    "type": "anime",
     "status": "want",
-    "releaseYear": 2025,
-    "note": "友人のおすすめ。",
+    "releaseYear": 2018,
     "tags": [
-      "青春",
-      "音楽"
+      "歴史",
+      "冒険"
     ],
-    "createdAt": "2026-11-12T10:00:00+09:00",
-    "updatedAt": "2026-11-12T10:00:00+09:00"
+    "catalog": {
+      "id": 76757,
+      "mediaType": "tv",
+      "posterPath": "/rVRpYvsyPgUUsuK0kQbya67ROPZ.jpg"
+    },
+    "createdAt": "2026-11-21T15:04:17.443Z",
+    "updatedAt": "2026-11-21T15:04:17.443Z"
   }
 ]
