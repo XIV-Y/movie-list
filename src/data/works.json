@@ -1,122 +1,5 @@
 [
   {
-    "id": "tv-209867",
-    "title": "葬送のフリーレン",
-    "type": "anime",
-    "status": "watching",
-    "releaseYear": 2023,
-    "watchedOn": "2026-11-19",
-    "catalog": {
-      "id": 209867,
-      "mediaType": "tv",
-      "posterPath": "/dhzbCznEzU67RXWYb53fyPe9Keb.jpg"
-    }
-  },
-  {
-    "id": "tv-68293",
-    "title": "逃げるは恥だが役に立つ",
-    "type": "drama",
-    "status": "watched",
-    "releaseYear": 2016,
-    "watchedOn": "2026-11-16",
-    "catalog": {
-      "id": 68293,
-      "mediaType": "tv",
-      "posterPath": "/hZwCvI7x2f2ZG0ZybInfQeGyyIA.jpg"
-    }
-  },
-  {
-    "id": "movie-157336",
-    "title": "インターステラー",
-    "type": "movie",
-    "status": "watched",
-    "releaseYear": 2014,
-    "watchedOn": "2026-11-09",
-    "catalog": {
-      "id": 157336,
-      "mediaType": "movie",
-      "posterPath": "/auQjFBfCWSL6DpQhWVCZ6wFtDm6.jpg"
-    }
-  },
-  {
-    "id": "tv-1396",
-    "title": "ブレイキング・バッド",
-    "type": "drama",
-    "status": "watching",
-    "releaseYear": 2008,
-    "watchedOn": "2026-11-05",
-    "catalog": {
-      "id": 1396,
-      "mediaType": "tv",
-      "posterPath": "/anFx9aTOOYqgS3v7x3R84Kz67ly.jpg"
-    }
-  },
-  {
-    "id": "movie-129",
-    "title": "千と千尋の神隠し",
-    "type": "anime",
-    "status": "watched",
-    "releaseYear": 2001,
-    "watchedOn": "2026-10-30",
-    "catalog": {
-      "id": 129,
-      "mediaType": "movie",
-      "posterPath": "/8TEs6twIANAc2qiU8m17JO8Ujcx.jpg"
-    }
-  },
-  {
-    "id": "movie-315011",
-    "title": "シン・ゴジラ",
-    "type": "movie",
-    "status": "watched",
-    "releaseYear": 2016,
-    "watchedOn": "2026-10-21",
-    "catalog": {
-      "id": 315011,
-      "mediaType": "movie",
-      "posterPath": "/8ulwqKiHxz5uH0g0I1BVeNDTWlo.jpg"
-    }
-  },
-  {
-    "id": "tv-120089",
-    "title": "SPY×FAMILY",
-    "type": "anime",
-    "status": "watched",
-    "releaseYear": 2022,
-    "watchedOn": "2026-10-12",
-    "catalog": {
-      "id": 120089,
-      "mediaType": "tv",
-      "posterPath": "/vaIREdPGZOnW9Jrs86mheVVlIQQ.jpg"
-    }
-  },
-  {
-    "id": "tv-1044",
-    "title": "プラネットアース",
-    "type": "other",
-    "status": "watched",
-    "releaseYear": 2006,
-    "watchedOn": "2026-09-28",
-    "catalog": {
-      "id": 1044,
-      "mediaType": "tv",
-      "posterPath": "/bNcNxUtZ520d5de5s78onoiSiwQ.jpg"
-    }
-  },
-  {
-    "id": "tv-55925",
-    "title": "半沢直樹",
-    "type": "drama",
-    "status": "watched",
-    "releaseYear": 2013,
-    "watchedOn": "2026-09-14",
-    "catalog": {
-      "id": 55925,
-      "mediaType": "tv",
-      "posterPath": "/4Qnk3QvC8gxTWH5uM8thovg1j4Q.jpg"
-    }
-  },
-  {
     "id": "movie-361743",
     "title": "トップガン マーヴェリック",
     "type": "movie",
@@ -138,6 +21,114 @@
       "id": 76757,
       "mediaType": "tv",
       "posterPath": "/rVRpYvsyPgUUsuK0kQbya67ROPZ.jpg"
+    }
+  },
+  {
+    "id": "tv-55925",
+    "title": "半沢直樹",
+    "type": "drama",
+    "status": "watched",
+    "releaseYear": 2013,
+    "catalog": {
+      "id": 55925,
+      "mediaType": "tv",
+      "posterPath": "/4Qnk3QvC8gxTWH5uM8thovg1j4Q.jpg"
+    }
+  },
+  {
+    "id": "tv-1044",
+    "title": "プラネットアース",
+    "type": "other",
+    "status": "watched",
+    "releaseYear": 2006,
+    "catalog": {
+      "id": 1044,
+      "mediaType": "tv",
+      "posterPath": "/bNcNxUtZ520d5de5s78onoiSiwQ.jpg"
+    }
+  },
+  {
+    "id": "tv-120089",
+    "title": "SPY×FAMILY",
+    "type": "anime",
+    "status": "watched",
+    "releaseYear": 2022,
+    "catalog": {
+      "id": 120089,
+      "mediaType": "tv",
+      "posterPath": "/vaIREdPGZOnW9Jrs86mheVVlIQQ.jpg"
+    }
+  },
+  {
+    "id": "movie-315011",
+    "title": "シン・ゴジラ",
+    "type": "movie",
+    "status": "watched",
+    "releaseYear": 2016,
+    "catalog": {
+      "id": 315011,
+      "mediaType": "movie",
+      "posterPath": "/8ulwqKiHxz5uH0g0I1BVeNDTWlo.jpg"
+    }
+  },
+  {
+    "id": "movie-129",
+    "title": "千と千尋の神隠し",
+    "type": "anime",
+    "status": "watched",
+    "releaseYear": 2001,
+    "catalog": {
+      "id": 129,
+      "mediaType": "movie",
+      "posterPath": "/8TEs6twIANAc2qiU8m17JO8Ujcx.jpg"
+    }
+  },
+  {
+    "id": "tv-1396",
+    "title": "ブレイキング・バッド",
+    "type": "drama",
+    "status": "watching",
+    "releaseYear": 2008,
+    "catalog": {
+      "id": 1396,
+      "mediaType": "tv",
+      "posterPath": "/anFx9aTOOYqgS3v7x3R84Kz67ly.jpg"
+    }
+  },
+  {
+    "id": "movie-157336",
+    "title": "インターステラー",
+    "type": "movie",
+    "status": "watched",
+    "releaseYear": 2014,
+    "catalog": {
+      "id": 157336,
+      "mediaType": "movie",
+      "posterPath": "/auQjFBfCWSL6DpQhWVCZ6wFtDm6.jpg"
+    }
+  },
+  {
+    "id": "tv-68293",
+    "title": "逃げるは恥だが役に立つ",
+    "type": "drama",
+    "status": "watched",
+    "releaseYear": 2016,
+    "catalog": {
+      "id": 68293,
+      "mediaType": "tv",
+      "posterPath": "/hZwCvI7x2f2ZG0ZybInfQeGyyIA.jpg"
+    }
+  },
+  {
+    "id": "tv-209867",
+    "title": "葬送のフリーレン",
+    "type": "anime",
+    "status": "watching",
+    "releaseYear": 2023,
+    "catalog": {
+      "id": 209867,
+      "mediaType": "tv",
+      "posterPath": "/dhzbCznEzU67RXWYb53fyPe9Keb.jpg"
     }
   }
 ]

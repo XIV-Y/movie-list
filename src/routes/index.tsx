@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { WorkList } from '../features/works/components/WorkList'
 import { WorkSummaryStats } from '../features/works/components/WorkSummaryStats'
 import { getWorks } from '../features/works/repository'
-import { sortByWatchedOnDesc, summarizeWorks } from '../features/works/selectors'
+import { sortNewestFirst, summarizeWorks } from '../features/works/selectors'
 
 export const Route = createFileRoute('/')({
   loader: () => getWorks(),
@@ -11,7 +11,7 @@ export const Route = createFileRoute('/')({
 
 function Home() {
   const works = Route.useLoaderData()
-  const sorted = sortByWatchedOnDesc(works)
+  const sorted = sortNewestFirst(works)
 
   return (
     <div className="space-y-8">
