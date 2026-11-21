@@ -1,4 +1,4 @@
-import { WORK_TYPES, type Work, type WorkType } from './types'
+import { WORK_TYPES, type Work, type WorkType } from './types.ts'
 
 /**
  * 視聴日の新しい順に並べる。

@@ -1,5 +1,5 @@
-import type { WorkSummary } from '../selectors'
-import { WORK_TYPES, WORK_TYPE_LABELS } from '../types'
+import type { WorkSummary } from '../selectors.ts'
+import { WORK_TYPES, WORK_TYPE_LABELS } from '../types.ts'
 
 export function WorkSummaryStats({ summary }: { summary: WorkSummary }) {
   const items = [

@@ -1,4 +1,4 @@
-import type { Work } from './types'
+import type { Work } from './types.ts'
 
 /**
  * 画面開発用のダミーデータ。

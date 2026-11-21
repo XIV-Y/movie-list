@@ -1,4 +1,4 @@
-import type { Work } from '../types'
+import type { Work } from '../types.ts'
 import { WorkCard } from './WorkCard'
 
 export function WorkList({ works }: { works: readonly Work[] }) {

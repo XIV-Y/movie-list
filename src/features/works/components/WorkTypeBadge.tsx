@@ -1,4 +1,4 @@
-import { WORK_TYPE_LABELS, type WorkType } from '../types'
+import { WORK_TYPE_LABELS, type WorkType } from '../types.ts'
 
 const STYLES: Record<WorkType, string> = {
   movie: 'bg-rose-100 text-rose-700 dark:bg-rose-500/15 dark:text-rose-300',
