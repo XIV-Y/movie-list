@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { HeadContent, Outlet, Scripts, createRootRoute, useRouter } from '@tanstack/react-router'
 import { AppFooter } from '../components/AppFooter'
 import { AppHeader } from '../components/AppHeader'
+import { NotFound } from '../components/NotFound'
 import appCss from '../styles.css?url'
 
 export const Route = createRootRoute({
@@ -25,6 +26,7 @@ export const Route = createRootRoute({
   // ルートの中身はブラウザ側で描画される
   shellComponent: RootDocument,
   component: RootLayout,
+  notFoundComponent: NotFound,
 })
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
