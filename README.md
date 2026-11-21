@@ -50,7 +50,10 @@ npm run validate   # 視聴記録 JSON の形式チェック
 
 ```bash
 # 作品名で検索し、候補から番号で選ぶ
-npm run add -- "作品名" --rating 5 --note "感想" --tag タグ
+npm run add -- "作品名"
+
+# 視聴日を指定 (省略時は今日)
+npm run add -- "作品名" --watched-on 2026-11-01
 
 # 見たい作品として登録
 npm run add -- "作品名" --status want
@@ -62,10 +65,7 @@ npm run add -- --id 129 --media movie
 | オプション | 内容 |
 |---|---|
 | `--status <watched\|watching\|want>` | 視聴ステータス（既定: `watched`） |
-| `--rating <1-5>` | 評価 |
 | `--watched-on <YYYY-MM-DD>` | 視聴日（既定: 見た・見ている なら今日） |
-| `--note <text>` | 感想メモ |
-| `--tag <name>` | タグ（複数指定可） |
 | `--type <movie\|drama\|anime\|other>` | 種別（既定: ジャンルから推定） |
 | `--id <id> --media <movie\|tv>` | 作品 ID を直接指定 |
 | `--first` | 検索結果の 1 件目を選ぶ |
