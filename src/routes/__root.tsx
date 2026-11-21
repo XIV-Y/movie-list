@@ -1,6 +1,7 @@
 /// <reference types="vite/client" />
 import type { ReactNode } from 'react'
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
+import { HeadContent, Outlet, Scripts, createRootRoute } from '@tanstack/react-router'
+import { AppHeader } from '../components/AppHeader'
 import appCss from '../styles.css?url'
 
 export const Route = createRootRoute({
@@ -15,6 +16,7 @@ export const Route = createRootRoute({
   // SPA モードでは shellComponent だけがビルド時に HTML 化され、
   // ルートの中身はブラウザ側で描画される
   shellComponent: RootDocument,
+  component: RootLayout,
 })
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
@@ -23,10 +25,21 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="min-h-dvh bg-zinc-50 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100">
         {children}
         <Scripts />
       </body>
     </html>
+  )
+}
+
+function RootLayout() {
+  return (
+    <>
+      <AppHeader />
+      <main className="mx-auto max-w-5xl px-4 py-6 sm:py-8">
+        <Outlet />
+      </main>
+    </>
   )
 }
