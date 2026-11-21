@@ -7,14 +7,12 @@
  *
  * オプション:
  *   --status <watched|watching|want>  視聴ステータス (既定: watched)
- *   --watched-on <YYYY-MM-DD>         視聴日 (既定: watched / watching なら今日)
  *   --type <movie|drama|anime|other>  種別 (既定: 作品データベースのジャンルから推定)
  *   --id <id> --media <movie|tv>      作品データベースの作品 ID を直接指定 (検索しない)
  *   --first                           検索結果の 1 件目を選ぶ (候補を選ばない)
  */
 import { createInterface } from 'node:readline/promises'
 import { parseArgs } from 'node:util'
-import { isDateString } from '../src/features/works/parse.ts'
 import {
   CATALOG_MEDIA_TYPES,
   WATCH_STATUSES,
@@ -35,11 +33,6 @@ function choice<T extends string>(name: string, value: string | undefined, value
   if (value === undefined) return undefined
   if (!values.includes(value as T)) throw new UsageError(`--${name} は ${values.join(' / ')} のいずれかを指定してください`)
   return value as T
-}
-
-function today(): string {
-  // ローカル時刻の YYYY-MM-DD
-  return new Date().toLocaleDateString('sv-SE')
 }
 
 async function pickCandidate(candidates: CatalogSearchResult[], pickFirst: boolean): Promise<CatalogSearchResult> {
@@ -74,7 +67,6 @@ async function main() {
     allowPositionals: true,
     options: {
       status: { type: 'string', default: 'watched' },
-      'watched-on': { type: 'string' },
       type: { type: 'string' },
       id: { type: 'string' },
       media: { type: 'string' },
@@ -86,10 +78,6 @@ async function main() {
   const typeOverride = choice('type', values.type, WORK_TYPES)
   const query = positionals.join(' ').trim()
 
-  const watchedOn = values['watched-on']
-  if (watchedOn !== undefined && !isDateString(watchedOn)) {
-    throw new UsageError('--watched-on は YYYY-MM-DD 形式で指定してください')
-  }
 
   // 作品を決める
   let target: { mediaType: CatalogMediaType; id: number }
@@ -118,7 +106,6 @@ async function main() {
     type: typeOverride ?? inferWorkType(details),
     status,
     releaseYear: details.releaseYear,
-    watchedOn: watchedOn ?? (status === 'want' ? undefined : today()),
     catalog: { id: details.id, mediaType: details.mediaType, posterPath: details.posterPath },
   }
 
@@ -130,7 +117,6 @@ async function main() {
     WORK_TYPE_LABELS[cleaned.type],
     cleaned.releaseYear && `${cleaned.releaseYear}年`,
     WATCH_STATUS_LABELS[cleaned.status],
-    cleaned.watchedOn,
   ].filter(Boolean)
   console.log(`✔ 追加しました: ${cleaned.title} (${parts.join(' / ')})`)
 }
