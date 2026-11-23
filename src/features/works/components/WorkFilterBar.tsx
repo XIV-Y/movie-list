@@ -1,5 +1,4 @@
 import { DEFAULT_SORT, DEFAULT_VIEW, SORT_KEYS, SORT_LABELS, VIEW_KEYS, VIEW_LABELS, type WorkFilters } from '../filters.ts'
-import { WORK_TYPES, WORK_TYPE_LABELS } from '../types.ts'
 
 type Props = {
   value: WorkFilters
@@ -11,7 +10,7 @@ const CONTROL =
   'focus-visible:border-zinc-500 focus-visible:ring-2 focus-visible:ring-zinc-400/40 ' +
   'dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100'
 
-/** 一覧の表示方法 (すべて / タグ別)・絞り込み (種別)・並び替え */
+/** 一覧の表示方法 (すべて / タグ別) と並び替え */
 export function WorkFilterBar({ value, onChange }: Props) {
   // 既定値の項目は undefined にして URL に出さない
   const update = (patch: Partial<Record<keyof WorkFilters, string>>) => {
@@ -25,12 +24,12 @@ export function WorkFilterBar({ value, onChange }: Props) {
   }
 
   return (
-    <div role="group" aria-label="表示方法・絞り込み・並び替え" className="grid grid-cols-2 gap-2 sm:flex">
+    <div role="group" aria-label="表示方法と並び替え" className="grid grid-cols-2 gap-2 sm:flex">
       {/* 表示方法の切り替え (セグメントボタン) */}
       <div
         role="group"
         aria-label="表示方法"
-        className="col-span-2 grid h-10 grid-cols-2 rounded-lg border border-zinc-300 bg-zinc-100 p-0.5 sm:col-span-1 dark:border-zinc-700 dark:bg-zinc-800"
+        className="grid h-10 grid-cols-2 rounded-lg border border-zinc-300 bg-zinc-100 p-0.5 dark:border-zinc-700 dark:bg-zinc-800"
       >
         {VIEW_KEYS.map((view) => {
           const active = (value.view ?? DEFAULT_VIEW) === view
@@ -52,27 +51,28 @@ export function WorkFilterBar({ value, onChange }: Props) {
         })}
       </div>
 
-      <label>
-        <span className="sr-only">種別</span>
-        <select value={value.type ?? ''} onChange={(e) => update({ type: e.target.value })} className={`${CONTROL} w-full`}>
-          <option value="">すべての種別</option>
-          {WORK_TYPES.map((t) => (
-            <option key={t} value={t}>
-              {WORK_TYPE_LABELS[t]}
-            </option>
-          ))}
-        </select>
-      </label>
-
-      <label>
+      <label className="relative">
         <span className="sr-only">並び順</span>
-        <select value={value.sort ?? DEFAULT_SORT} onChange={(e) => update({ sort: e.target.value })} className={`${CONTROL} w-full`}>
+        {/* ブラウザ標準の矢印は右端に寄り、文字の左にも余白が入って中身が右に寄って見えるため、
+            標準の見た目を消して左右の余白をそろえた独自の矢印を重ねる */}
+        <select
+          value={value.sort ?? DEFAULT_SORT}
+          onChange={(e) => update({ sort: e.target.value })}
+          className={`${CONTROL} w-full appearance-none pr-9`}
+        >
           {SORT_KEYS.map((k) => (
             <option key={k} value={k}>
               {SORT_LABELS[k]}
             </option>
           ))}
         </select>
+        <svg
+          aria-hidden
+          viewBox="0 0 16 16"
+          className="pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-zinc-500 dark:text-zinc-400"
+        >
+          <path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
       </label>
     </div>
   )
