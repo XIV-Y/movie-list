@@ -25,6 +25,18 @@ export function WorkCard({ work }: { work: Work }) {
 
         <h3 className="line-clamp-2 min-h-[2lh] text-sm font-bold leading-snug break-words">{work.title}</h3>
 
+        {work.tags && work.tags.length > 0 && (
+          <ul className="mt-auto flex flex-wrap gap-1" aria-label="タグ">
+            {work.tags.map((tag) => (
+              <li
+                key={tag}
+                className="max-w-full truncate rounded bg-zinc-100 px-1.5 py-0.5 text-[11px] text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300"
+              >
+                #{tag}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </article>
   )
