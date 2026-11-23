@@ -51,15 +51,28 @@ export function WorkFilterBar({ value, onChange }: Props) {
         })}
       </div>
 
-      <label>
+      <label className="relative">
         <span className="sr-only">並び順</span>
-        <select value={value.sort ?? DEFAULT_SORT} onChange={(e) => update({ sort: e.target.value })} className={`${CONTROL} w-full`}>
+        {/* ブラウザ標準の矢印は右端に寄り、文字の左にも余白が入って中身が右に寄って見えるため、
+            標準の見た目を消して左右の余白をそろえた独自の矢印を重ねる */}
+        <select
+          value={value.sort ?? DEFAULT_SORT}
+          onChange={(e) => update({ sort: e.target.value })}
+          className={`${CONTROL} w-full appearance-none pr-9`}
+        >
           {SORT_KEYS.map((k) => (
             <option key={k} value={k}>
               {SORT_LABELS[k]}
             </option>
           ))}
         </select>
+        <svg
+          aria-hidden
+          viewBox="0 0 16 16"
+          className="pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-zinc-500 dark:text-zinc-400"
+        >
+          <path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
       </label>
     </div>
   )
