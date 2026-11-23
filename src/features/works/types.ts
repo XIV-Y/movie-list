@@ -39,6 +39,8 @@ export type Work = {
   status: WatchStatus
   /** 公開・放送開始年 */
   releaseYear?: number
+  /** シリーズなどでまとめるためのタグ (例: "X-MEN")。一覧をタグ別に表示するときに使う */
+  tags?: string[]
   /** 作品データベースから登録した作品のみ */
   catalog?: CatalogRef
 }
