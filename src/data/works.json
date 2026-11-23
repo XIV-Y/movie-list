@@ -5,6 +5,9 @@
     "type": "movie",
     "status": "watched",
     "releaseYear": 2000,
+    "tags": [
+      "X-MEN"
+    ],
     "catalog": {
       "id": 36657,
       "mediaType": "movie",
@@ -17,6 +20,9 @@
     "type": "movie",
     "status": "watched",
     "releaseYear": 2003,
+    "tags": [
+      "X-MEN"
+    ],
     "catalog": {
       "id": 36658,
       "mediaType": "movie",
@@ -29,6 +35,9 @@
     "type": "movie",
     "status": "watched",
     "releaseYear": 2006,
+    "tags": [
+      "X-MEN"
+    ],
     "catalog": {
       "id": 36668,
       "mediaType": "movie",
@@ -41,6 +50,9 @@
     "type": "movie",
     "status": "watched",
     "releaseYear": 2011,
+    "tags": [
+      "X-MEN"
+    ],
     "catalog": {
       "id": 49538,
       "mediaType": "movie",
@@ -53,6 +65,9 @@
     "type": "movie",
     "status": "watched",
     "releaseYear": 2014,
+    "tags": [
+      "X-MEN"
+    ],
     "catalog": {
       "id": 127585,
       "mediaType": "movie",
@@ -65,6 +80,9 @@
     "type": "movie",
     "status": "watched",
     "releaseYear": 2016,
+    "tags": [
+      "X-MEN"
+    ],
     "catalog": {
       "id": 246655,
       "mediaType": "movie",
@@ -77,6 +95,9 @@
     "type": "movie",
     "status": "watched",
     "releaseYear": 2019,
+    "tags": [
+      "X-MEN"
+    ],
     "catalog": {
       "id": 320288,
       "mediaType": "movie",

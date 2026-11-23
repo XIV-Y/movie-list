@@ -5,7 +5,13 @@ import { WorkTypeBadge } from './WorkTypeBadge'
 /** WorkList のグリッド列数に合わせた画像の表示幅 */
 const POSTER_SIZES = '(min-width: 1024px) 190px, (min-width: 768px) 25vw, (min-width: 640px) 33vw, 50vw'
 
-export function WorkCard({ work }: { work: Work }) {
+type Props = {
+  work: Work
+  /** タイトルの見出しレベル。タグ別表示ではタグ名の見出し (h3) の下になるので h4 にする */
+  titleAs?: 'h3' | 'h4'
+}
+
+export function WorkCard({ work, titleAs: Title = 'h3' }: Props) {
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
       <div className="relative">
@@ -23,8 +29,20 @@ export function WorkCard({ work }: { work: Work }) {
           {work.releaseYear !== undefined && <span>{work.releaseYear}年</span>}
         </div>
 
-        <h3 className="line-clamp-2 min-h-[2lh] text-sm font-bold leading-snug break-words">{work.title}</h3>
+        <Title className="line-clamp-2 min-h-[2lh] text-sm font-bold leading-snug break-words">{work.title}</Title>
 
+        {work.tags && work.tags.length > 0 && (
+          <ul className="mt-auto flex flex-wrap gap-1" aria-label="タグ">
+            {work.tags.map((tag) => (
+              <li
+                key={tag}
+                className="max-w-full truncate rounded bg-zinc-100 px-1.5 py-0.5 text-[11px] text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300"
+              >
+                #{tag}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </article>
   )

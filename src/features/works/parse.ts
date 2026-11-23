@@ -35,7 +35,7 @@ export class WorksParseError extends Error {
   override name = 'WorksParseError'
 }
 
-const WORK_KEYS = ['id', 'title', 'type', 'status', 'releaseYear', 'catalog']
+const WORK_KEYS = ['id', 'title', 'type', 'status', 'releaseYear', 'tags', 'catalog']
 const CATALOG_KEYS = ['id', 'mediaType', 'posterPath']
 
 function parseWork(value: unknown, at: string): Work {
@@ -48,6 +48,7 @@ function parseWork(value: unknown, at: string): Work {
     type: oneOf(o, 'type', WORK_TYPES, at),
     status: oneOf(o, 'status', WATCH_STATUSES, at),
     ...(o.releaseYear !== undefined && { releaseYear: int(o, 'releaseYear', at, 1870, 2100) }),
+    ...(o.tags !== undefined && { tags: tags(o, 'tags', at) }),
     ...(o.catalog !== undefined && { catalog: parseCatalog(o.catalog, `${at}.catalog`) }),
   }
 }
@@ -104,4 +105,17 @@ function oneOf<T extends string>(o: Record<string, unknown>, key: string, values
   const v = o[key]
   if (typeof v !== 'string' || !values.includes(v as T)) fail(at, key, `${values.join(' / ')} のいずれか`)
   return v as T
+}
+
+/** 空でない文字列の配列。前後の空白は不可、同じタグの重複も不可 */
+function tags(o: Record<string, unknown>, key: string, at: string): string[] {
+  const v = o[key]
+  if (
+    !Array.isArray(v) ||
+    !v.every((x) => typeof x === 'string' && x.trim() !== '' && x === x.trim()) ||
+    new Set(v).size !== v.length
+  ) {
+    fail(at, key, '重複のない空でない文字列の配列 (前後の空白なし)')
+  }
+  return v as string[]
 }

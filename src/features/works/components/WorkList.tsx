@@ -9,9 +9,11 @@ type Props = {
   works: readonly Work[]
   /** 0 件のときの表示 (既定: まだ記録がありません) */
   empty?: ReactNode
+  /** 作品タイトルの見出しレベル */
+  titleAs?: 'h3' | 'h4'
 }
 
-export function WorkList({ works, empty }: Props) {
+export function WorkList({ works, empty, titleAs }: Props) {
   if (works.length === 0) {
     return (
       <div className="rounded-xl border border-dashed border-zinc-300 px-4 py-12 text-center dark:border-zinc-700">
@@ -29,7 +31,7 @@ export function WorkList({ works, empty }: Props) {
     <ul className={WORK_GRID_CLASS}>
       {works.map((work) => (
         <li key={work.id}>
-          <WorkCard work={work} />
+          <WorkCard work={work} titleAs={titleAs} />
         </li>
       ))}
     </ul>
