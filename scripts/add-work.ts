@@ -8,6 +8,7 @@
  * オプション:
  *   --status <watched|watching|want>  視聴ステータス (既定: watched)
  *   --type <movie|drama|anime|other>  種別 (既定: 作品データベースのジャンルから推定)
+ *   --tag <name>                      シリーズなどのタグ (複数指定可。例: --tag X-MEN)
  *   --id <id> --media <movie|tv>      作品データベースの作品 ID を直接指定 (検索しない)
  *   --first                           検索結果の 1 件目を選ぶ (候補を選ばない)
  */
@@ -68,6 +69,7 @@ async function main() {
     options: {
       status: { type: 'string', default: 'watched' },
       type: { type: 'string' },
+      tag: { type: 'string', multiple: true, default: [] },
       id: { type: 'string' },
       media: { type: 'string' },
       first: { type: 'boolean', default: false },
@@ -106,9 +108,12 @@ async function main() {
     type: typeOverride ?? inferWorkType(details),
     status,
     releaseYear: details.releaseYear,
+    // 前後の空白を除き、重複をまとめる。なければ項目ごと省略する
+    tags: [...new Set(values.tag.map((t) => t.trim()).filter(Boolean))],
     catalog: { id: details.id, mediaType: details.mediaType, posterPath: details.posterPath },
   }
 
+  if (work.tags?.length === 0) delete work.tags
   // undefined の項目は JSON に書かない
   const cleaned = JSON.parse(JSON.stringify(work)) as Work
   writeWorks([...works, cleaned]) // 書き込み時に形式チェックされる
@@ -117,6 +122,7 @@ async function main() {
     WORK_TYPE_LABELS[cleaned.type],
     cleaned.releaseYear && `${cleaned.releaseYear}年`,
     WATCH_STATUS_LABELS[cleaned.status],
+    cleaned.tags?.map((t) => `#${t}`).join(' '),
   ].filter(Boolean)
   console.log(`✔ 追加しました: ${cleaned.title} (${parts.join(' / ')})`)
 }
