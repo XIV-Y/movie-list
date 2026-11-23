@@ -1,5 +1,5 @@
 import { sortNewestFirst } from './selectors.ts'
-import { WORK_TYPES, type Work, type WorkType } from './types.ts'
+import type { Work } from './types.ts'
 
 export const SORT_KEYS = ['added', 'year-desc', 'year-asc', 'title'] as const
 export type SortKey = (typeof SORT_KEYS)[number]
@@ -27,12 +27,11 @@ type NonDefaultSort = Exclude<SortKey, typeof DEFAULT_SORT>
 const NON_DEFAULT_SORTS = SORT_KEYS.filter((k): k is NonDefaultSort => k !== DEFAULT_SORT)
 
 /**
- * 一覧の表示方法・絞り込み (種別)・並び替えの条件。URL の検索パラメータに保持する。
- * 既定値 (すべて表示・すべての種別・追加の新しい順) の項目は undefined にして URL に出さない。
+ * 一覧の表示方法・並び替えの条件。URL の検索パラメータに保持する。
+ * 既定値 (すべて表示・追加の新しい順) の項目は undefined にして URL に出さない。
  */
 export type WorkFilters = {
   view?: Exclude<ViewKey, typeof DEFAULT_VIEW>
-  type?: WorkType
   sort?: NonDefaultSort
 }
 
@@ -40,17 +39,12 @@ function pick<T extends string>(value: unknown, values: readonly T[]): T | undef
   return typeof value === 'string' && values.includes(value as T) ? (value as T) : undefined
 }
 
-/** URL の検索パラメータを検証する。不正な値や廃止した項目 (q / status) は無視する */
+/** URL の検索パラメータを検証する。不正な値や廃止した項目 (q / status / type) は無視する */
 export function parseWorkFilters(search: Record<string, unknown>): WorkFilters {
   return {
     view: pick(search.view, ['tags'] as const),
-    type: pick(search.type, WORK_TYPES),
     sort: pick(search.sort, NON_DEFAULT_SORTS),
   }
-}
-
-export function hasActiveFilters(filters: WorkFilters): boolean {
-  return Boolean(filters.type)
 }
 
 const titleCollator = new Intl.Collator('ja', { numeric: true, sensitivity: 'base' })
@@ -78,8 +72,7 @@ function sortWorks(works: readonly Work[], sort: SortKey): Work[] {
 }
 
 export function applyWorkFilters(works: readonly Work[], filters: WorkFilters): Work[] {
-  const matched = works.filter((work) => !filters.type || work.type === filters.type)
-  return sortWorks(matched, filters.sort ?? DEFAULT_SORT)
+  return sortWorks(works, filters.sort ?? DEFAULT_SORT)
 }
 
 export type WorkGroup = {
