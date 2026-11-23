@@ -1,7 +1,7 @@
 import { createFileRoute, useHydrated } from '@tanstack/react-router'
 import { WorkFilterBar } from '../features/works/components/WorkFilterBar'
 import { WorkGroupedList } from '../features/works/components/WorkGroupedList'
-import { WorkList } from '../features/works/components/WorkList'
+import { WorkSection } from '../features/works/components/WorkSection'
 import { WorkSummaryStats } from '../features/works/components/WorkSummaryStats'
 import { WorksPage } from '../features/works/components/WorksPage'
 import { applyWorkFilters, groupWorksByTag, parseWorkFilters, type WorkFilters } from '../features/works/filters'
@@ -32,13 +32,13 @@ function Home() {
     <WorksPage
       summary={<WorkSummaryStats summary={summarizeWorks(works)} />}
       toolbar={<WorkFilterBar value={filters} onChange={setFilters} />}
-      resultInfo={`${works.length} 件`}
       list={
-        // タグ別表示 (?view=tags)。記録が 0 件のときは通常の一覧の「まだ記録がありません」を出す
+        // タグ別表示 (?view=tags)。記録が 0 件のときは「すべて」と同じ表示 (まだ記録がありません) にする。
+        // 「すべて」でもタグ別と同じ見出し行 (名前と件数) を出し、切り替えても一覧の位置が変わらないようにする
         filters.view === 'tags' && results.length > 0 ? (
           <WorkGroupedList groups={groupWorksByTag(results)} />
         ) : (
-          <WorkList works={results} />
+          <WorkSection id="all-works" label="すべて" works={results} />
         )
       }
     />

@@ -2,15 +2,13 @@ import type { ReactNode } from 'react'
 
 type Props = {
   summary: ReactNode
-  /** 絞り込み・並び替え */
+  /** 表示方法の切り替え・並び替え */
   toolbar: ReactNode
-  /** 表示件数 (1 行分の高さを常に確保する) */
-  resultInfo: ReactNode
   list: ReactNode
 }
 
 /** TOP ページの骨組み */
-export function WorksPage({ summary, toolbar, resultInfo, list }: Props) {
+export function WorksPage({ summary, toolbar, list }: Props) {
   return (
     <div className="space-y-8">
       <section aria-labelledby="summary-heading" className="space-y-3">
@@ -27,9 +25,6 @@ export function WorksPage({ summary, toolbar, resultInfo, list }: Props) {
           </h2>
           <div className="w-full sm:w-auto">{toolbar}</div>
         </div>
-        <p className="h-5 text-sm text-zinc-500 dark:text-zinc-400" aria-live="polite">
-          {resultInfo}
-        </p>
         {list}
       </section>
     </div>
